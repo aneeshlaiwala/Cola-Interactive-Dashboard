@@ -4,7 +4,7 @@ matplotlib
 seaborn
 plotly
 scikit-learn
-statsmodels==0.14.0
-scipy==1.11.3
+statsmodels==0.13.5
+scipy==1.10.1
 factor_analyzer
 reportlab
