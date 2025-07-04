@@ -1489,6 +1489,9 @@ elif section == "Decision Tree Analysis":
 # =======================
 # CLUSTER ANALYSIS
 # =======================
+# =======================
+# CLUSTER ANALYSIS - CLEAN VERSION
+# =======================
 elif section == "Cluster Analysis":
     st.markdown("<h2 class='subheader'>Cluster Analysis</h2>", unsafe_allow_html=True)
     
@@ -1496,12 +1499,13 @@ elif section == "Cluster Analysis":
     if len(filtered_df) < 30:
         st.warning("Insufficient data for cluster analysis. Please adjust your filters.")
     else:
-        # Display cluster distribution
-        cluster_dist = filtered_df['Cluster_Name'].value_counts(normalize=True) * 100
-        
+        # Two-column layout: Pie chart on left, Radar chart on right
         col1, col2 = st.columns(2)
         
         with col1:
+            # Display cluster distribution pie chart
+            cluster_dist = filtered_df['Cluster_Name'].value_counts(normalize=True) * 100
+            
             fig = px.pie(
                 values=cluster_dist.values,
                 names=cluster_dist.index,
@@ -1512,7 +1516,7 @@ elif section == "Cluster Analysis":
             fig.update_traces(textinfo='label+percent', textposition='inside')
             st.plotly_chart(fig)
             
-            # Display Factor Analysis
+            # Factor Analysis section
             st.subheader("Factor Analysis")
             
             # Perform factor analysis
@@ -1561,9 +1565,53 @@ elif section == "Cluster Analysis":
                     st.plotly_chart(fig)
             else:
                 st.info("Insufficient data for factor analysis. Minimum of 50 records required.")
+            
+            # Move Cluster Profiles Analysis to left column below Factor Analysis
+            st.subheader("Cluster Profiles Analysis")
+            
+            # Get cluster data for analysis
+            clusters = filtered_df['Cluster_Name'].unique()
+            
+            for cluster in clusters:
+                cluster_data = filtered_df[filtered_df['Cluster_Name'] == cluster]
+                
+                st.write(f"**{cluster}** ({len(cluster_data)} consumers, {len(cluster_data)/len(filtered_df):.1%})")
+                
+                if len(cluster_data) > 0:
+                    # Top brand preference
+                    top_brand = cluster_data['Most_Often_Consumed_Brand'].value_counts().idxmax()
+                    brand_pct = cluster_data['Most_Often_Consumed_Brand'].value_counts(normalize=True).max() * 100
+                    
+                    # Top occasion
+                    top_occasion = cluster_data['Occasions_of_Buying'].value_counts().idxmax()
+                    occasion_pct = cluster_data['Occasions_of_Buying'].value_counts(normalize=True).max() * 100
+                    
+                    # Demographics
+                    top_gender = cluster_data['Gender'].value_counts().idxmax()
+                    gender_pct = cluster_data['Gender'].value_counts(normalize=True).max() * 100
+                    
+                    top_age = cluster_data['Age_Group'].value_counts().idxmax()
+                    age_pct = cluster_data['Age_Group'].value_counts(normalize=True).max() * 100
+                    
+                    # Average NPS
+                    avg_nps = cluster_data['NPS_Score'].mean()
+                    
+                    # Top and weakest attributes
+                    top_attribute = cluster_data[attributes].mean().idxmax()
+                    lowest_attribute = cluster_data[attributes].mean().idxmin()
+                    
+                    st.write(f"🥤 Prefers: **{top_brand}** ({brand_pct:.1f}%)")
+                    st.write(f"🛒 Typically buys for: **{top_occasion}** ({occasion_pct:.1f}%)")
+                    st.write(f"👤 Demographics: **{top_gender}** ({gender_pct:.1f}%), **{top_age}** ({age_pct:.1f}%)")
+                    st.write(f"⭐ Avg. NPS: **{avg_nps:.1f}**")
+                    st.write(f"💪 Strongest attribute: **{top_attribute.replace('_Rating', '')}**")
+                    st.write(f"⚠️ Weakest attribute: **{lowest_attribute.replace('_Rating', '')}**")
+                    st.write("---")  # Separator between clusters
+                else:
+                    st.write("No data available for this cluster with current filters.")
         
         with col2:
-            # Cluster centers
+            # Cluster centers radar chart
             st.subheader("Cluster Centers (Average Ratings)")
             
             # Generate radar chart for cluster centers
@@ -1604,7 +1652,7 @@ elif section == "Cluster Analysis":
             )
             st.plotly_chart(fig)
             
-            # Add interpretation guide BELOW the chart
+            # Add interpretation guide BELOW the radar chart
             st.markdown("""
             **📊 How to Read This Chart:**
             - **Larger areas** = Higher ratings for those attributes
@@ -1612,96 +1660,6 @@ elif section == "Cluster Analysis":
             - **Distance from center** = Rating strength (1-5 scale)
             - **Overlapping areas** = Similar performance between clusters
             """)
-            
-            # Add AI-powered cluster analysis
-            if len(df_radar) > 0:
-                st.markdown("### 🤖 AI Analysis: Cluster Insights")
-                
-                # Analyze each cluster's strengths and weaknesses
-                for i, row in df_radar.iterrows():
-                    cluster_name = row['Cluster']
-                    scores = row[categories].values
-                    
-                    # Find strengths (top 2) and weaknesses (bottom 2)
-                    strength_indices = np.argsort(scores)[-2:]
-                    weakness_indices = np.argsort(scores)[:2]
-                    
-                    strengths = [categories[j] for j in strength_indices]
-                    weaknesses = [categories[j] for j in weakness_indices]
-                    strength_scores = [f"{scores[j]:.2f}" for j in strength_indices]
-                    weakness_scores = [f"{scores[j]:.2f}" for j in weakness_indices]
-                    
-                    # Get cluster size
-                    cluster_size = len(filtered_df[filtered_df['Cluster_Name'] == cluster_name])
-                    cluster_pct = (cluster_size / len(filtered_df)) * 100
-                    
-                    # Generate strategy based on cluster name
-                    strategies = {
-                        "Taste Enthusiasts": "Focus on premium positioning with emphasis on quality and taste innovation",
-                        "Brand Loyalists": "Leverage brand trust and loyalty programs to maintain market share", 
-                        "Value Seekers": "Emphasize value proposition, competitive pricing, and accessibility"
-                    }
-                    strategy = strategies.get(cluster_name, "Develop targeted marketing strategy based on cluster preferences")
-                    
-                    # Generate insight
-                    st.markdown(f"""
-                    <div class='insight-box' style='margin: 0.5rem 0;'>
-                        <div class='insight-title'>{cluster_name} ({cluster_size} consumers, {cluster_pct:.1f}%)</div>
-                        <p><strong>🎯 Key Strengths:</strong> {' & '.join(strengths)} (scores: {', '.join(strength_scores)})</p>
-                        <p><strong>⚠️ Areas for Improvement:</strong> {' & '.join(weaknesses)} (scores: {', '.join(weakness_scores)})</p>
-                        <p><strong>💡 Strategy:</strong> {strategy}</p>
-                    </div>
-                    """, unsafe_allow_html=True)
-        
-        # Cluster profiles
-        st.subheader("Cluster Profiles Analysis")
-        
-        col1, col2, col3 = st.columns(3)
-        
-        # Most common demographic and preference characteristics per cluster
-        clusters = filtered_df['Cluster_Name'].unique()
-        
-        for i, cluster in enumerate([clusters[i] for i in range(min(3, len(clusters)))]):
-            col = [col1, col2, col3][i]
-            with col:
-                cluster_data = filtered_df[filtered_df['Cluster_Name'] == cluster]
-                
-                st.write(f"**{cluster}** ({len(cluster_data)} consumers, {len(cluster_data)/len(filtered_df):.1%})")
-                
-                if len(cluster_data) > 0:
-                    # Top brand preference
-                    top_brand = cluster_data['Most_Often_Consumed_Brand'].value_counts().idxmax()
-                    brand_pct = cluster_data['Most_Often_Consumed_Brand'].value_counts(normalize=True).max() * 100
-                    
-                    # Top occasion
-                    top_occasion = cluster_data['Occasions_of_Buying'].value_counts().idxmax()
-                    occasion_pct = cluster_data['Occasions_of_Buying'].value_counts(normalize=True).max() * 100
-                    
-                    # Demographics
-                    top_gender = cluster_data['Gender'].value_counts().idxmax()
-                    gender_pct = cluster_data['Gender'].value_counts(normalize=True).max() * 100
-                    
-                    top_age = cluster_data['Age_Group'].value_counts().idxmax()
-                    age_pct = cluster_data['Age_Group'].value_counts(normalize=True).max() * 100
-                    
-                    # Average NPS
-                    avg_nps = cluster_data['NPS_Score'].mean()
-                    
-                    st.write(f"🥤 Prefers: **{top_brand}** ({brand_pct:.1f}%)")
-                    st.write(f"🛒 Typically buys for: **{top_occasion}** ({occasion_pct:.1f}%)")
-                    st.write(f"👤 Demographics: **{top_gender}** ({gender_pct:.1f}%), **{top_age}** ({age_pct:.1f}%)")
-                    st.write(f"⭐ Avg. NPS: **{avg_nps:.1f}**")
-                    
-                    # Top attributes (highest rated)
-                    top_attribute = cluster_data[attributes].mean().idxmax()
-                    st.write(f"💪 Strongest attribute: **{top_attribute.replace('_Rating', '')}**")
-                    
-                    # Lowest attributes (lowest rated)
-                    lowest_attribute = cluster_data[attributes].mean().idxmin()
-                    st.write(f"⚠️ Weakest attribute: **{lowest_attribute.replace('_Rating', '')}**")
-                else:
-                    st.write("No data available for this cluster with current filters.")
-
 # =======================
 # ADVANCED ANALYTICS EXPLAINED
 # =======================
