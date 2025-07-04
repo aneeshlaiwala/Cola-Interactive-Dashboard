@@ -141,8 +141,13 @@ def load_data():
 # Load the data
 df, cluster_centers = load_data()
 
-# App title
+# App title with logo
 st.markdown("<h1 class='main-header'>Interactive Cola Consumer Dashboard</h1>", unsafe_allow_html=True)
+
+# Add the animated logo
+col1, col2, col3 = st.columns([1, 2, 1])
+with col2:
+    st.image("insights3d_logo.gif", width=300, caption="Data-Driven. Digital. Decoded by AI")
 
 # Section Selection using Radio Buttons
 section = st.radio("Select Analysis Section", [
