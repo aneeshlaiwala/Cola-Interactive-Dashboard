@@ -249,19 +249,17 @@ st.sidebar.markdown("*Last updated: Live Dashboard*")
 # Add export options in sidebar
 st.sidebar.markdown("---")
 st.sidebar.markdown("## 📥 Quick Export")
-if st.sidebar.button("📊 Export Current View"):
-    try:
-        csv = filtered_df.to_csv(index=False)
-        st.sidebar.download_button(
-            label="💾 Download CSV",
-            data=csv,
-            file_name=f"cola_data_filtered_{len(filtered_df)}_records.csv",
-            mime="text/csv",
-            key="sidebar_download"
-        )
-        st.sidebar.success("✅ Export ready!")
-    except Exception as e:
-        st.sidebar.error("Export temporarily unavailable. Use 'View & Download Full Dataset' section instead.")
+
+# Create download button without requiring a click first
+csv_data = filtered_df.to_csv(index=False)
+st.sidebar.download_button(
+    label="📊 Download Current View",
+    data=csv_data,
+    file_name=f"cola_data_filtered_{len(filtered_df)}_records.csv",
+    mime="text/csv",
+    key="sidebar_download_direct"
+)
+st.sidebar.success("✅ Click above to download!")
 
 # Add navigation help
 st.sidebar.markdown("---")
@@ -1583,15 +1581,6 @@ elif section == "Cluster Analysis":
             # Cluster centers
             st.subheader("Cluster Centers (Average Ratings)")
             
-            # Add interpretation guide
-            st.markdown("""
-            **📊 How to Read This Chart:**
-            - **Larger areas** = Higher ratings for those attributes
-            - **Compare shapes** to see how clusters differ
-            - **Distance from center** = Rating strength (1-5 scale)
-            - **Overlapping areas** = Similar performance between clusters
-            """)
-            
             # Generate radar chart for cluster centers
             categories = ['Taste', 'Price', 'Packaging', 'Brand_Reputation', 'Availability', 'Sweetness', 'Fizziness']
             
@@ -1629,6 +1618,15 @@ elif section == "Cluster Analysis":
                 title="Cluster Profiles - Average Ratings"
             )
             st.plotly_chart(fig)
+            
+            # Add interpretation guide BELOW the chart
+            st.markdown("""
+            **📊 How to Read This Chart:**
+            - **Larger areas** = Higher ratings for those attributes
+            - **Compare shapes** to see how clusters differ
+            - **Distance from center** = Rating strength (1-5 scale)
+            - **Overlapping areas** = Similar performance between clusters
+            """)
             
             # Add AI-powered cluster analysis
             if len(df_radar) > 0:
