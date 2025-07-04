@@ -782,9 +782,9 @@ elif section == "Regression Analysis":
                 x=y_reg, 
                 y=y_pred,
                 title='Predicted vs Actual NPS Scores',
-                labels={'x': 'Actual NPS Score', 'y': 'Predicted NPS Score'},
-                trendline='ols'
+                labels={'x': 'Actual NPS Score', 'y': 'Predicted NPS Score'}
             )
+            
             # Add diagonal line for perfect prediction
             min_val = min(min(y_reg), min(y_pred))
             max_val = max(max(y_reg), max(y_pred))
@@ -792,8 +792,21 @@ elif section == "Regression Analysis":
                 type="line",
                 x0=min_val, y0=min_val,
                 x1=max_val, y1=max_val,
-                line=dict(color="red", dash="dash"),
+                line=dict(color="red", dash="dash", width=2),
+                name="Perfect Prediction"
             )
+            
+            # Add trend line manually using numpy
+            z = np.polyfit(y_reg, y_pred, 1)
+            p = np.poly1d(z)
+            fig.add_scatter(
+                x=sorted(y_reg), 
+                y=p(sorted(y_reg)),
+                mode='lines',
+                name=f'Trend Line (R² = {r2:.3f})',
+                line=dict(color='blue', width=2)
+            )
+            
             st.plotly_chart(fig)
         
         with col2:
