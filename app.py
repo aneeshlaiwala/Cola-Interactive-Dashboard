@@ -246,21 +246,6 @@ st.sidebar.markdown("## 🔄 Data Status")
 st.sidebar.success("✅ Data is current")
 st.sidebar.markdown("*Last updated: Live Dashboard*")
 
-# Add export options in sidebar
-st.sidebar.markdown("---")
-st.sidebar.markdown("## 📥 Quick Export")
-
-# Create download button without requiring a click first
-csv_data = filtered_df.to_csv(index=False)
-st.sidebar.download_button(
-    label="📊 Download Current View",
-    data=csv_data,
-    file_name=f"cola_data_filtered_{len(filtered_df)}_records.csv",
-    mime="text/csv",
-    key="sidebar_download_direct"
-)
-st.sidebar.success("✅ Click above to download!")
-
 # Add navigation help
 st.sidebar.markdown("---")
 st.sidebar.markdown("## 🧭 Navigation Tips")
@@ -269,7 +254,7 @@ st.sidebar.info("""
 - Use filters to focus on specific segments
 - Switch chart types for different perspectives  
 - Check the Executive Summary for key insights
-- Export data for further analysis
+- Use 'View & Download Full Dataset' section for exports
 """)
 
 # App title with enhanced styling
