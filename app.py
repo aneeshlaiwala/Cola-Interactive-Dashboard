@@ -13,24 +13,17 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.tree import DecisionTreeClassifier, plot_tree
 from sklearn import tree
 from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import r2_score, mean_squared_error
 from io import BytesIO
 import plotly.figure_factory as ff
 
-# Try to import statsmodels with error handling
-try:
-    import statsmodels.api as sm
-    STATSMODELS_AVAILABLE = True
-except ImportError:
-    STATSMODELS_AVAILABLE = False
-    st.warning("Statsmodels not available. Regression analysis will be limited.")
-
-# Try to import factor analysis with error handling
+# Try to import optional libraries with error handling
 try:
     from factor_analyzer import FactorAnalyzer
     FACTOR_ANALYZER_AVAILABLE = True
 except ImportError:
     FACTOR_ANALYZER_AVAILABLE = False
-    st.warning("Factor analyzer not available. Factor analysis will be skipped.")
 
 # Set page styling
 st.markdown("""
@@ -704,29 +697,38 @@ elif section == "Basic Attribute Scores":
                 st.plotly_chart(fig)
 
 # =======================
-# REGRESSION ANALYSIS
+# REGRESSION ANALYSIS - FIXED WITH SKLEARN
 # =======================
 elif section == "Regression Analysis":
     st.markdown("<h2 class='subheader'>Regression Analysis</h2>", unsafe_allow_html=True)
     
-    if not STATSMODELS_AVAILABLE:
-        st.error("Statsmodels is not available. Regression analysis cannot be performed.")
-        st.info("This section requires the statsmodels package to be properly installed.")
-    elif len(filtered_df) < 10:
+    # Check if we have enough data
+    if len(filtered_df) < 10:
         st.warning("Insufficient data for regression analysis. Please adjust your filters.")
     else:
         # Prepare data for regression
-        X_reg = filtered_df[['Taste_Rating', 'Price_Rating', 'Packaging_Rating', 
-                           'Brand_Reputation_Rating', 'Availability_Rating', 
-                           'Sweetness_Rating', 'Fizziness_Rating']]
+        attributes = ['Taste_Rating', 'Price_Rating', 'Packaging_Rating', 
+                     'Brand_Reputation_Rating', 'Availability_Rating', 
+                     'Sweetness_Rating', 'Fizziness_Rating']
         
+        X_reg = filtered_df[attributes]
         y_reg = filtered_df['NPS_Score']
         
-        # Add constant to predictor variables
-        X_reg = sm.add_constant(X_reg)
+        # Fit regression model using sklearn
+        model = LinearRegression()
+        model.fit(X_reg, y_reg)
         
-        # Fit regression model
-        model = sm.OLS(y_reg, X_reg).fit()
+        # Make predictions
+        y_pred = model.predict(X_reg)
+        
+        # Calculate metrics
+        r2 = r2_score(y_reg, y_pred)
+        mse = mean_squared_error(y_reg, y_pred)
+        
+        # Calculate adjusted R-squared
+        n = len(y_reg)
+        p = len(attributes)
+        adj_r2 = 1 - (1 - r2) * (n - 1) / (n - p - 1)
         
         # Display regression results
         col1, col2 = st.columns(2)
@@ -736,67 +738,118 @@ elif section == "Regression Analysis":
             
             # Create a dataframe for coefficients
             coef_df = pd.DataFrame({
-                'Feature': X_reg.columns,
-                'Coefficient': model.params,
-                'P-Value': model.pvalues,
-                'Significant': model.pvalues < 0.05
-            })
+                'Feature': attributes,
+                'Coefficient': model.coef_,
+                'Abs_Coefficient': np.abs(model.coef_)
+            }).sort_values('Abs_Coefficient', ascending=False)
             
-            # Sort by absolute coefficient value
-            coef_df = coef_df.sort_values(by='Coefficient', key=abs, ascending=False)
-            
-            # Format p-values
-            coef_df['P-Value'] = coef_df['P-Value'].apply(lambda x: f"{x:.4f}")
-            coef_df['Coefficient'] = coef_df['Coefficient'].apply(lambda x: f"{x:.4f}")
+            # Format coefficients
+            coef_df['Coefficient_Formatted'] = coef_df['Coefficient'].apply(lambda x: f"{x:.4f}")
             
             # Display table
-            st.dataframe(coef_df, use_container_width=True)
+            display_df = coef_df[['Feature', 'Coefficient_Formatted']].copy()
+            display_df.columns = ['Feature', 'Coefficient']
+            st.dataframe(display_df, use_container_width=True)
             
             # Display key metrics
-            st.write(f"**R-squared:** {model.rsquared:.4f}")
-            st.write(f"**Adjusted R-squared:** {model.rsquared_adj:.4f}")
-            st.write(f"**F-statistic:** {model.fvalue:.4f}")
-            st.write(f"**Prob (F-statistic):** {model.f_pvalue:.4f}")
+            st.write(f"**R-squared:** {r2:.4f}")
+            st.write(f"**Adjusted R-squared:** {adj_r2:.4f}")
+            st.write(f"**Mean Squared Error:** {mse:.4f}")
+            st.write(f"**Intercept:** {model.intercept_:.4f}")
         
         with col2:
             # Visualization of coefficients
-            sig_coefs = coef_df[coef_df['Feature'] != 'const']
-            
             fig = px.bar(
-                sig_coefs,
+                coef_df,
                 x='Feature', 
                 y='Coefficient',
                 title='Feature Importance (Coefficient Values)',
-                color='Significant',
-                color_discrete_map={True: 'green', False: 'red'},
-                labels={'Coefficient': 'Impact on NPS Score', 'Feature': 'Attribute'}
+                labels={'Coefficient': 'Impact on NPS Score', 'Feature': 'Attribute'},
+                color='Coefficient',
+                color_continuous_scale='RdBu_r'
             )
+            fig.update_layout(xaxis={'categoryorder': 'total descending'})
+            st.plotly_chart(fig)
+        
+        # Predicted vs Actual scatter plot
+        st.subheader("Model Performance")
+        
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            # Predicted vs Actual
+            fig = px.scatter(
+                x=y_reg, 
+                y=y_pred,
+                title='Predicted vs Actual NPS Scores',
+                labels={'x': 'Actual NPS Score', 'y': 'Predicted NPS Score'},
+                trendline='ols'
+            )
+            # Add diagonal line for perfect prediction
+            min_val = min(min(y_reg), min(y_pred))
+            max_val = max(max(y_reg), max(y_pred))
+            fig.add_shape(
+                type="line",
+                x0=min_val, y0=min_val,
+                x1=max_val, y1=max_val,
+                line=dict(color="red", dash="dash"),
+            )
+            st.plotly_chart(fig)
+        
+        with col2:
+            # Residuals plot
+            residuals = y_reg - y_pred
+            fig = px.scatter(
+                x=y_pred, 
+                y=residuals,
+                title='Residuals vs Predicted Values',
+                labels={'x': 'Predicted NPS Score', 'y': 'Residuals'}
+            )
+            fig.add_hline(y=0, line_dash="dash", line_color="red")
             st.plotly_chart(fig)
         
         # Key findings summary
         st.subheader("Key Regression Findings")
         
-        # Identify significant positive and negative factors
-        pos_factors = coef_df[(coef_df['Significant'] == True) & (coef_df['Feature'] != 'const') & (coef_df['Coefficient'].astype(float) > 0)]
-        neg_factors = coef_df[(coef_df['Significant'] == True) & (coef_df['Feature'] != 'const') & (coef_df['Coefficient'].astype(float) < 0)]
+        # Identify top positive and negative factors
+        pos_factors = coef_df[coef_df['Coefficient'] > 0].head(3)
+        neg_factors = coef_df[coef_df['Coefficient'] < 0].head(3)
         
         col1, col2 = st.columns(2)
         
         with col1:
             if not pos_factors.empty:
-                st.write("**Significant Positive Factors on NPS:**")
+                st.write("**Top Positive Factors (Increase NPS):**")
                 for i, row in pos_factors.iterrows():
-                    st.write(f"- {row['Feature'].replace('_Rating', '')}: {row['Coefficient']}")
+                    st.write(f"- **{row['Feature'].replace('_Rating', '')}**: {row['Coefficient']:.4f}")
             else:
-                st.write("No significant positive factors found.")
+                st.write("No positive factors found.")
         
         with col2:
             if not neg_factors.empty:
-                st.write("**Significant Negative Factors on NPS:**")
+                st.write("**Top Negative Factors (Decrease NPS):**")
                 for i, row in neg_factors.iterrows():
-                    st.write(f"- {row['Feature'].replace('_Rating', '')}: {row['Coefficient']}")
+                    st.write(f"- **{row['Feature'].replace('_Rating', '')}**: {row['Coefficient']:.4f}")
             else:
-                st.write("No significant negative factors found.")
+                st.write("No negative factors found.")
+        
+        # Interpretation
+        st.subheader("Business Insights")
+        
+        top_factor = coef_df.iloc[0]
+        st.write(f"""
+        **Key Insights from Regression Analysis:**
+        
+        🎯 **Model Performance**: The model explains {r2:.1%} of the variation in NPS scores.
+        
+        🏆 **Most Important Factor**: **{top_factor['Feature'].replace('_Rating', '')}** has the strongest impact on NPS 
+        (coefficient: {top_factor['Coefficient']:.4f}).
+        
+        💡 **Business Recommendation**: Focus on improving the top 3 factors with positive coefficients to maximize NPS improvement.
+        
+        📊 **Model Quality**: {"Excellent" if r2 > 0.7 else "Good" if r2 > 0.5 else "Moderate" if r2 > 0.3 else "Weak"} explanatory power 
+        (R² = {r2:.3f}).
+        """)
 
 # =======================
 # DECISION TREE ANALYSIS
@@ -809,18 +862,19 @@ elif section == "Decision Tree Analysis":
         st.warning("Insufficient data for decision tree analysis. Please adjust your filters.")
     else:
         # Define NPS categories for classification
-        filtered_df['NPS_Category'] = pd.cut(
-            filtered_df['NPS_Score'],
+        filtered_df_copy = filtered_df.copy()
+        filtered_df_copy['NPS_Category'] = pd.cut(
+            filtered_df_copy['NPS_Score'],
             bins=[-1, 6, 8, 10],
             labels=['Detractor', 'Passive', 'Promoter']
         )
         
         # Prepare data for decision tree
-        X_tree = filtered_df[['Taste_Rating', 'Price_Rating', 'Packaging_Rating', 
+        X_tree = filtered_df_copy[['Taste_Rating', 'Price_Rating', 'Packaging_Rating', 
                             'Brand_Reputation_Rating', 'Availability_Rating', 
                             'Sweetness_Rating', 'Fizziness_Rating', 'Age']]
         
-        y_tree = filtered_df['NPS_Category']
+        y_tree = filtered_df_copy['NPS_Category']
         
         # Split the data
         X_train, X_test, y_train, y_test = train_test_split(X_tree, y_tree, test_size=0.25, random_state=42)
@@ -965,7 +1019,18 @@ elif section == "Cluster Analysis":
             
             # Only perform factor analysis if we have sufficient data and the library is available
             if not FACTOR_ANALYZER_AVAILABLE:
-                st.info("Factor analyzer library not available. Factor analysis will be skipped.")
+                st.info("Factor analyzer library not available. Showing correlation matrix instead.")
+                
+                # Show correlation matrix as alternative
+                corr_matrix = filtered_df[attributes].corr()
+                fig = px.imshow(
+                    corr_matrix,
+                    title="Attribute Correlation Matrix",
+                    color_continuous_scale='RdBu_r',
+                    aspect="auto"
+                )
+                st.plotly_chart(fig)
+                
             elif len(filtered_df) >= 50:  # Minimum recommended for factor analysis
                 try:
                     fa = FactorAnalyzer(n_factors=2, rotation='varimax')
@@ -982,6 +1047,15 @@ elif section == "Cluster Analysis":
                     st.dataframe(loadings.round(3), use_container_width=True)
                 except Exception as e:
                     st.error(f"Error in factor analysis: {str(e)}")
+                    # Show correlation matrix as fallback
+                    corr_matrix = filtered_df[attributes].corr()
+                    fig = px.imshow(
+                        corr_matrix,
+                        title="Attribute Correlation Matrix (Fallback)",
+                        color_continuous_scale='RdBu_r',
+                        aspect="auto"
+                    )
+                    st.plotly_chart(fig)
             else:
                 st.info("Insufficient data for factor analysis. Minimum of 50 records required.")
         
