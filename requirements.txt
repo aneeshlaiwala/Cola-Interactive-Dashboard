@@ -4,6 +4,6 @@ matplotlib
 seaborn
 plotly
 scikit-learn
-statsmodels
-scipy
-factor_analyzer
+statsmodels>=0.12.0
+scipy>=1.7.0
+factor_analyzer>=0.4.0
