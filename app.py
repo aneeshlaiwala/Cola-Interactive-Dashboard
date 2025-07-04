@@ -141,26 +141,8 @@ def load_data():
 # Load the data
 df, cluster_centers = load_data()
 
-# App title with logo
-title_col, logo_col = st.columns([3, 1])
-
-with title_col:
-    st.markdown("<h1 class='main-header'>Interactive Cola Consumer Dashboard</h1>", unsafe_allow_html=True)
-
-with logo_col:
-    # Try multiple approaches to ensure the GIF animation works
-    try:
-        # First try: direct file reference
-        st.image("insights3d_logo.gif", width=200)
-        st.markdown("<p style='color: #666; font-size: 12px; text-align: center;'>Data-Driven. Digital. Decoded by AI</p>", unsafe_allow_html=True)
-    except:
-        # Fallback: HTML approach
-        st.markdown("""
-        <div style='text-align: right;'>
-            <img src='insights3d_logo.gif' width='200' style='max-width: 100%;'/>
-            <p style='color: #666; font-size: 12px; margin-top: 5px; text-align: center;'>Data-Driven. Digital. Decoded by AI</p>
-        </div>
-        """, unsafe_allow_html=True)
+# App title
+st.markdown("<h1 class='main-header'>Interactive Cola Consumer Dashboard</h1>", unsafe_allow_html=True)
 
 # Section Selection using Radio Buttons
 section = st.radio("Select Analysis Section", [
