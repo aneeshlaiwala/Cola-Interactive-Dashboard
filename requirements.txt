@@ -1,10 +1,11 @@
 streamlit
 pandas
+numpy>=1.21.0
 matplotlib
 seaborn
 plotly
 scikit-learn
-numpy
-statsmodels
-scipy
+patsy>=0.5.0
+statsmodels>=0.13.0
+scipy>=1.7.0
 factor_analyzer
