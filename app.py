@@ -250,13 +250,18 @@ st.sidebar.markdown("*Last updated: Live Dashboard*")
 st.sidebar.markdown("---")
 st.sidebar.markdown("## 📥 Quick Export")
 if st.sidebar.button("📊 Export Current View"):
-    csv = filtered_df.to_csv(index=False)
-    st.sidebar.download_button(
-        label="💾 Download CSV",
-        data=csv,
-        file_name=f"cola_data_filtered_{len(filtered_df)}_records.csv",
-        mime="text/csv"
-    )
+    try:
+        csv = filtered_df.to_csv(index=False)
+        st.sidebar.download_button(
+            label="💾 Download CSV",
+            data=csv,
+            file_name=f"cola_data_filtered_{len(filtered_df)}_records.csv",
+            mime="text/csv",
+            key="sidebar_download"
+        )
+        st.sidebar.success("✅ Export ready!")
+    except Exception as e:
+        st.sidebar.error("Export temporarily unavailable. Use 'View & Download Full Dataset' section instead.")
 
 # Add navigation help
 st.sidebar.markdown("---")
@@ -1578,6 +1583,15 @@ elif section == "Cluster Analysis":
             # Cluster centers
             st.subheader("Cluster Centers (Average Ratings)")
             
+            # Add interpretation guide
+            st.markdown("""
+            **📊 How to Read This Chart:**
+            - **Larger areas** = Higher ratings for those attributes
+            - **Compare shapes** to see how clusters differ
+            - **Distance from center** = Rating strength (1-5 scale)
+            - **Overlapping areas** = Similar performance between clusters
+            """)
+            
             # Generate radar chart for cluster centers
             categories = ['Taste', 'Price', 'Packaging', 'Brand_Reputation', 'Availability', 'Sweetness', 'Fizziness']
             
@@ -1615,6 +1629,33 @@ elif section == "Cluster Analysis":
                 title="Cluster Profiles - Average Ratings"
             )
             st.plotly_chart(fig)
+            
+            # Add AI-powered cluster analysis
+            if len(df_radar) > 0:
+                st.markdown("### 🤖 AI Analysis: Cluster Insights")
+                
+                # Analyze each cluster's strengths and weaknesses
+                for i, row in df_radar.iterrows():
+                    cluster_name = row['Cluster']
+                    scores = row[categories].values
+                    
+                    # Find strengths (top 2) and weaknesses (bottom 2)
+                    strengths = [categories[j] for j in np.argsort(scores)[-2:]]
+                    weaknesses = [categories[j] for j in np.argsort(scores)[:2]]
+                    
+                    # Get cluster size
+                    cluster_size = len(filtered_df[filtered_df['Cluster_Name'] == cluster_name])
+                    cluster_pct = (cluster_size / len(filtered_df)) * 100
+                    
+                    # Generate insight
+                    st.markdown(f"""
+                    <div class='insight-box' style='margin: 0.5rem 0;'>
+                        <div class='insight-title'>{cluster_name} ({cluster_size} consumers, {cluster_pct:.1f}%)</div>
+                        <p><strong>🎯 Key Strengths:</strong> {' & '.join(strengths)} (scores: {scores[np.argsort(scores)[-2:]]}</p>
+                        <p><strong>⚠️ Areas for Improvement:</strong> {' & '.join(weaknesses)} (scores: {scores[np.argsort(scores)[:2]]})</p>
+                        <p><strong>💡 Strategy:</strong> {"Focus on premium positioning with emphasis on quality" if cluster_name == "Taste Enthusiasts" else "Leverage brand trust and loyalty programs" if cluster_name == "Brand Loyalists" else "Emphasize value proposition and accessibility"}</p>
+                    </div>
+                    """, unsafe_allow_html=True)
         
         # Cluster profiles
         st.subheader("Cluster Profiles Analysis")
