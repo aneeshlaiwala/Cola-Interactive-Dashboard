@@ -400,20 +400,42 @@ elif section == "Demographic Profile":
         # Age Group Distribution
         if not filtered_df.empty:
             age_counts = filtered_df['Age_Group'].value_counts(normalize=True).sort_index() * 100
-            fig = px.bar(
-                x=age_counts.index, 
-                y=age_counts.values, 
-                text=[f"{x:.1f}%" for x in age_counts.values],
-                title='Age Group Distribution (%)',
-                labels={'x': 'Age Group', 'y': 'Percentage (%)'},
-                color=age_counts.values,
-                color_continuous_scale='viridis'
-            )
-            fig.update_traces(textposition='outside')
-            fig.update_layout(
-                yaxis=dict(range=[0, max(age_counts.values) * 1.15]),  # Add 15% padding for labels
-                showlegend=False
-            )
+            age_raw_counts = filtered_df['Age_Group'].value_counts().sort_index()
+            
+            # Chart type selector
+            chart_type = st.selectbox("Chart Type:", ["Bar Chart", "Pie Chart"], key="age_chart_type")
+            
+            if chart_type == "Bar Chart":
+                fig = px.bar(
+                    x=age_counts.index, 
+                    y=age_counts.values, 
+                    text=[f"{x:.1f}%<br>Count: {count}" for x, count in zip(age_counts.values, age_raw_counts.values)],
+                    title='Age Group Distribution (%)',
+                    labels={'x': 'Age Group', 'y': 'Percentage (%)'},
+                    color=age_counts.values,
+                    color_continuous_scale='viridis'
+                )
+                fig.update_traces(
+                    textposition='outside',
+                    hovertemplate='<b>%{x}</b><br>Percentage: %{y:.1f}%<extra></extra>'
+                )
+                fig.update_layout(
+                    yaxis=dict(range=[0, max(age_counts.values) * 1.2]),
+                    showlegend=False
+                )
+            else:  # Pie Chart
+                fig = px.pie(
+                    values=age_counts.values,
+                    names=age_counts.index,
+                    title='Age Group Distribution (%)',
+                    hole=0.4
+                )
+                fig.update_traces(
+                    textinfo='label+percent',
+                    textposition='inside',
+                    hovertemplate='<b>%{label}</b><br>Percentage: %{percent}<br>Count: %{value:.0f}<extra></extra>'
+                )
+            
             st.plotly_chart(fig)
         else:
             st.info("No data available for Age Group Distribution with current filters.")
@@ -481,20 +503,42 @@ elif section == "Brand Metrics":
         # Most Often Consumed Brand
         if not filtered_df.empty:
             brand_counts = filtered_df['Most_Often_Consumed_Brand'].value_counts(normalize=True) * 100
-            fig = px.bar(
-                x=brand_counts.index, 
-                y=brand_counts.values,
-                text=[f"{x:.1f}%" for x in brand_counts.values],
-                title='Most Often Consumed Brand (%)',
-                labels={'x': 'Brand', 'y': 'Percentage (%)'},
-                color=brand_counts.values,
-                color_continuous_scale='plasma'
-            )
-            fig.update_traces(textposition='outside')
-            fig.update_layout(
-                yaxis=dict(range=[0, max(brand_counts.values) * 1.15]),
-                showlegend=False
-            )
+            brand_raw_counts = filtered_df['Most_Often_Consumed_Brand'].value_counts()
+            
+            # Chart type selector
+            brand_chart_type = st.selectbox("Chart Type:", ["Bar Chart", "Pie Chart"], key="brand_chart_type")
+            
+            if brand_chart_type == "Bar Chart":
+                fig = px.bar(
+                    x=brand_counts.index, 
+                    y=brand_counts.values,
+                    text=[f"{x:.1f}%<br>Count: {count}" for x, count in zip(brand_counts.values, brand_raw_counts.values)],
+                    title='Most Often Consumed Brand (%)',
+                    labels={'x': 'Brand', 'y': 'Percentage (%)'},
+                    color=brand_counts.values,
+                    color_continuous_scale='plasma'
+                )
+                fig.update_traces(
+                    textposition='outside',
+                    hovertemplate='<b>%{x}</b><br>Percentage: %{y:.1f}%<extra></extra>'
+                )
+                fig.update_layout(
+                    yaxis=dict(range=[0, max(brand_counts.values) * 1.2]),
+                    showlegend=False
+                )
+            else:  # Pie Chart
+                fig = px.pie(
+                    values=brand_counts.values,
+                    names=brand_counts.index,
+                    title='Most Often Consumed Brand (%)',
+                    hole=0.4
+                )
+                fig.update_traces(
+                    textinfo='label+percent',
+                    textposition='inside',
+                    hovertemplate='<b>%{label}</b><br>Percentage: %{percent}<br>Count: %{value:.0f}<extra></extra>'
+                )
+            
             st.plotly_chart(fig)
         else:
             st.info("No data available for Brand analysis with current filters.")
