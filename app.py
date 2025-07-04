@@ -1640,20 +1640,33 @@ elif section == "Cluster Analysis":
                     scores = row[categories].values
                     
                     # Find strengths (top 2) and weaknesses (bottom 2)
-                    strengths = [categories[j] for j in np.argsort(scores)[-2:]]
-                    weaknesses = [categories[j] for j in np.argsort(scores)[:2]]
+                    strength_indices = np.argsort(scores)[-2:]
+                    weakness_indices = np.argsort(scores)[:2]
+                    
+                    strengths = [categories[j] for j in strength_indices]
+                    weaknesses = [categories[j] for j in weakness_indices]
+                    strength_scores = [f"{scores[j]:.2f}" for j in strength_indices]
+                    weakness_scores = [f"{scores[j]:.2f}" for j in weakness_indices]
                     
                     # Get cluster size
                     cluster_size = len(filtered_df[filtered_df['Cluster_Name'] == cluster_name])
                     cluster_pct = (cluster_size / len(filtered_df)) * 100
                     
+                    # Generate strategy based on cluster name
+                    strategies = {
+                        "Taste Enthusiasts": "Focus on premium positioning with emphasis on quality and taste innovation",
+                        "Brand Loyalists": "Leverage brand trust and loyalty programs to maintain market share", 
+                        "Value Seekers": "Emphasize value proposition, competitive pricing, and accessibility"
+                    }
+                    strategy = strategies.get(cluster_name, "Develop targeted marketing strategy based on cluster preferences")
+                    
                     # Generate insight
                     st.markdown(f"""
                     <div class='insight-box' style='margin: 0.5rem 0;'>
                         <div class='insight-title'>{cluster_name} ({cluster_size} consumers, {cluster_pct:.1f}%)</div>
-                        <p><strong>🎯 Key Strengths:</strong> {' & '.join(strengths)} (scores: {scores[np.argsort(scores)[-2:]]}</p>
-                        <p><strong>⚠️ Areas for Improvement:</strong> {' & '.join(weaknesses)} (scores: {scores[np.argsort(scores)[:2]]})</p>
-                        <p><strong>💡 Strategy:</strong> {"Focus on premium positioning with emphasis on quality" if cluster_name == "Taste Enthusiasts" else "Leverage brand trust and loyalty programs" if cluster_name == "Brand Loyalists" else "Emphasize value proposition and accessibility"}</p>
+                        <p><strong>🎯 Key Strengths:</strong> {' & '.join(strengths)} (scores: {', '.join(strength_scores)})</p>
+                        <p><strong>⚠️ Areas for Improvement:</strong> {' & '.join(weaknesses)} (scores: {', '.join(weakness_scores)})</p>
+                        <p><strong>💡 Strategy:</strong> {strategy}</p>
                     </div>
                     """, unsafe_allow_html=True)
         
