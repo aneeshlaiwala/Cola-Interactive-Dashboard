@@ -443,14 +443,43 @@ elif section == "Demographic Profile":
         # Income Level Distribution
         if not filtered_df.empty:
             income_counts = filtered_df['Income_Level'].value_counts(normalize=True) * 100
-            fig = px.pie(
-                values=income_counts.values,
-                names=income_counts.index,
-                title='Income Level Distribution (%)',
-                hole=0.4,
-                labels={'label': 'Income Level', 'value': 'Percentage (%)'}
-            )
-            fig.update_traces(textinfo='label+percent', textposition='inside')
+            income_raw_counts = filtered_df['Income_Level'].value_counts()
+            
+            # Chart type selector
+            income_chart_type = st.selectbox("Chart Type:", ["Pie Chart", "Bar Chart"], key="income_chart_type")
+            
+            if income_chart_type == "Pie Chart":
+                fig = px.pie(
+                    values=income_counts.values,
+                    names=income_counts.index,
+                    title='Income Level Distribution (%)',
+                    hole=0.4,
+                    labels={'label': 'Income Level', 'value': 'Percentage (%)'}
+                )
+                fig.update_traces(
+                    textinfo='label+percent', 
+                    textposition='inside',
+                    hovertemplate='<b>%{label}</b><br>Percentage: %{percent}<br>Count: %{value:.0f}<extra></extra>'
+                )
+            else:  # Bar Chart
+                fig = px.bar(
+                    x=income_counts.index,
+                    y=income_counts.values,
+                    text=[f"{x:.1f}%<br>Count: {count}" for x, count in zip(income_counts.values, income_raw_counts.values)],
+                    title='Income Level Distribution (%)',
+                    labels={'x': 'Income Level', 'y': 'Percentage (%)'},
+                    color=income_counts.values,
+                    color_continuous_scale='viridis'
+                )
+                fig.update_traces(
+                    textposition='outside',
+                    hovertemplate='<b>%{x}</b><br>Percentage: %{y:.1f}%<extra></extra>'
+                )
+                fig.update_layout(
+                    yaxis=dict(range=[0, max(income_counts.values) * 1.2]),
+                    showlegend=False
+                )
+            
             st.plotly_chart(fig)
         else:
             st.info("No data available for Income Level Distribution with current filters.")
@@ -459,14 +488,43 @@ elif section == "Demographic Profile":
         # Gender Distribution
         if not filtered_df.empty:
             gender_counts = filtered_df['Gender'].value_counts(normalize=True) * 100
-            fig = px.pie(
-                values=gender_counts.values,
-                names=gender_counts.index,
-                title='Gender Distribution (%)',
-                hole=0.4,
-                labels={'label': 'Gender', 'value': 'Percentage (%)'}
-            )
-            fig.update_traces(textinfo='label+percent', textposition='inside')
+            gender_raw_counts = filtered_df['Gender'].value_counts()
+            
+            # Chart type selector
+            gender_chart_type = st.selectbox("Chart Type:", ["Pie Chart", "Bar Chart"], key="gender_chart_type")
+            
+            if gender_chart_type == "Pie Chart":
+                fig = px.pie(
+                    values=gender_counts.values,
+                    names=gender_counts.index,
+                    title='Gender Distribution (%)',
+                    hole=0.4,
+                    labels={'label': 'Gender', 'value': 'Percentage (%)'}
+                )
+                fig.update_traces(
+                    textinfo='label+percent', 
+                    textposition='inside',
+                    hovertemplate='<b>%{label}</b><br>Percentage: %{percent}<br>Count: %{value:.0f}<extra></extra>'
+                )
+            else:  # Bar Chart
+                fig = px.bar(
+                    x=gender_counts.index,
+                    y=gender_counts.values,
+                    text=[f"{x:.1f}%<br>Count: {count}" for x, count in zip(gender_counts.values, gender_raw_counts.values)],
+                    title='Gender Distribution (%)',
+                    labels={'x': 'Gender', 'y': 'Percentage (%)'},
+                    color=gender_counts.values,
+                    color_continuous_scale='plasma'
+                )
+                fig.update_traces(
+                    textposition='outside',
+                    hovertemplate='<b>%{x}</b><br>Percentage: %{y:.1f}%<extra></extra>'
+                )
+                fig.update_layout(
+                    yaxis=dict(range=[0, max(gender_counts.values) * 1.2]),
+                    showlegend=False
+                )
+            
             st.plotly_chart(fig)
         else:
             st.info("No data available for Gender Distribution with current filters.")
@@ -479,14 +537,34 @@ elif section == "Demographic Profile":
                 normalize='columns'
             ) * 100
             
-            fig = px.bar(
-                age_gender, 
-                barmode='group',
-                title='Age Group by Gender (%)',
-                labels={'value': 'Percentage (%)', 'index': 'Age Group'},
-                text_auto='.1f'
-            )
-            fig.update_traces(textposition='outside')
+            # Chart type selector
+            age_gender_chart_type = st.selectbox("Chart Type:", ["Grouped Bar Chart", "Stacked Bar Chart"], key="age_gender_chart_type")
+            
+            if age_gender_chart_type == "Grouped Bar Chart":
+                fig = px.bar(
+                    age_gender, 
+                    barmode='group',
+                    title='Age Group by Gender (%)',
+                    labels={'value': 'Percentage (%)', 'index': 'Age Group'},
+                    text_auto='.1f'
+                )
+                fig.update_traces(
+                    textposition='outside',
+                    hovertemplate='<b>%{fullData.name}</b><br>Age Group: %{x}<br>Percentage: %{y:.1f}%<extra></extra>'
+                )
+            else:  # Stacked Bar Chart
+                fig = px.bar(
+                    age_gender, 
+                    barmode='stack',
+                    title='Age Group by Gender (%)',
+                    labels={'value': 'Percentage (%)', 'index': 'Age Group'},
+                    text_auto='.1f'
+                )
+                fig.update_traces(
+                    textposition='inside',
+                    hovertemplate='<b>%{fullData.name}</b><br>Age Group: %{x}<br>Percentage: %{y:.1f}%<extra></extra>'
+                )
+            
             st.plotly_chart(fig)
         else:
             st.info("Insufficient data for Age Group by Gender analysis with current filters.")
@@ -546,20 +624,42 @@ elif section == "Brand Metrics":
         # Occasions of Buying
         if not filtered_df.empty:
             occasions_counts = filtered_df['Occasions_of_Buying'].value_counts(normalize=True) * 100
-            fig = px.bar(
-                x=occasions_counts.index, 
-                y=occasions_counts.values,
-                text=[f"{x:.1f}%" for x in occasions_counts.values],
-                title='Occasions of Buying (%)',
-                labels={'x': 'Occasion', 'y': 'Percentage (%)'},
-                color=occasions_counts.values,
-                color_continuous_scale='cividis'
-            )
-            fig.update_traces(textposition='outside')
-            fig.update_layout(
-                yaxis=dict(range=[0, max(occasions_counts.values) * 1.15]),
-                showlegend=False
-            )
+            occasions_raw_counts = filtered_df['Occasions_of_Buying'].value_counts()
+            
+            # Chart type selector
+            occasions_chart_type = st.selectbox("Chart Type:", ["Bar Chart", "Pie Chart"], key="occasions_chart_type")
+            
+            if occasions_chart_type == "Bar Chart":
+                fig = px.bar(
+                    x=occasions_counts.index, 
+                    y=occasions_counts.values,
+                    text=[f"{x:.1f}%<br>Count: {count}" for x, count in zip(occasions_counts.values, occasions_raw_counts.values)],
+                    title='Occasions of Buying (%)',
+                    labels={'x': 'Occasion', 'y': 'Percentage (%)'},
+                    color=occasions_counts.values,
+                    color_continuous_scale='cividis'
+                )
+                fig.update_traces(
+                    textposition='outside',
+                    hovertemplate='<b>%{x}</b><br>Percentage: %{y:.1f}%<extra></extra>'
+                )
+                fig.update_layout(
+                    yaxis=dict(range=[0, max(occasions_counts.values) * 1.2]),
+                    showlegend=False
+                )
+            else:  # Pie Chart
+                fig = px.pie(
+                    values=occasions_counts.values,
+                    names=occasions_counts.index,
+                    title='Occasions of Buying (%)',
+                    hole=0.4
+                )
+                fig.update_traces(
+                    textinfo='label+percent',
+                    textposition='inside',
+                    hovertemplate='<b>%{label}</b><br>Percentage: %{percent}<br>Count: %{value:.0f}<extra></extra>'
+                )
+            
             st.plotly_chart(fig)
         else:
             st.info("No data available for Occasions analysis with current filters.")
@@ -568,24 +668,46 @@ elif section == "Brand Metrics":
         # Frequency of Consumption
         if not filtered_df.empty:
             freq_counts = filtered_df['Frequency_of_Consumption'].value_counts(normalize=True) * 100
+            freq_raw_counts = filtered_df['Frequency_of_Consumption'].value_counts()
             # Sort by frequency (not alphabetically)
             freq_order = ['Daily', 'Weekly', 'Monthly', 'Rarely', 'Never']
             freq_counts = freq_counts.reindex([f for f in freq_order if f in freq_counts.index])
+            freq_raw_counts = freq_raw_counts.reindex([f for f in freq_order if f in freq_raw_counts.index])
             
-            fig = px.bar(
-                x=freq_counts.index,
-                y=freq_counts.values,
-                text=[f"{x:.1f}%" for x in freq_counts.values],
-                title='Frequency of Consumption (%)',
-                labels={'x': 'Frequency', 'y': 'Percentage (%)'},
-                color=freq_counts.values,
-                color_continuous_scale='turbo'
-            )
-            fig.update_traces(textposition='outside')
-            fig.update_layout(
-                yaxis=dict(range=[0, max(freq_counts.values) * 1.15]),
-                showlegend=False
-            )
+            # Chart type selector
+            freq_chart_type = st.selectbox("Chart Type:", ["Bar Chart", "Pie Chart"], key="freq_chart_type")
+            
+            if freq_chart_type == "Bar Chart":
+                fig = px.bar(
+                    x=freq_counts.index,
+                    y=freq_counts.values,
+                    text=[f"{x:.1f}%<br>Count: {count}" for x, count in zip(freq_counts.values, freq_raw_counts.values)],
+                    title='Frequency of Consumption (%)',
+                    labels={'x': 'Frequency', 'y': 'Percentage (%)'},
+                    color=freq_counts.values,
+                    color_continuous_scale='turbo'
+                )
+                fig.update_traces(
+                    textposition='outside',
+                    hovertemplate='<b>%{x}</b><br>Percentage: %{y:.1f}%<extra></extra>'
+                )
+                fig.update_layout(
+                    yaxis=dict(range=[0, max(freq_counts.values) * 1.2]),
+                    showlegend=False
+                )
+            else:  # Pie Chart
+                fig = px.pie(
+                    values=freq_counts.values,
+                    names=freq_counts.index,
+                    title='Frequency of Consumption (%)',
+                    hole=0.4
+                )
+                fig.update_traces(
+                    textinfo='label+percent',
+                    textposition='inside',
+                    hovertemplate='<b>%{label}</b><br>Percentage: %{percent}<br>Count: %{value:.0f}<extra></extra>'
+                )
+            
             st.plotly_chart(fig)
         else:
             st.info("No data available for Frequency analysis with current filters.")
@@ -593,24 +715,46 @@ elif section == "Brand Metrics":
         # Satisfaction Level
         if not filtered_df.empty:
             sat_counts = filtered_df['Satisfaction_Level'].value_counts(normalize=True) * 100
+            sat_raw_counts = filtered_df['Satisfaction_Level'].value_counts()
             # Sort by satisfaction level
             sat_order = ['Very Satisfied', 'Satisfied', 'Neutral', 'Dissatisfied', 'Very Dissatisfied']
             sat_counts = sat_counts.reindex([x for x in sat_order if x in sat_counts.index])
+            sat_raw_counts = sat_raw_counts.reindex([x for x in sat_order if x in sat_raw_counts.index])
             
-            fig = px.bar(
-                x=sat_counts.index,
-                y=sat_counts.values,
-                text=[f"{x:.1f}%" for x in sat_counts.values],
-                title='Satisfaction Level (%)',
-                labels={'x': 'Satisfaction Level', 'y': 'Percentage (%)'},
-                color=sat_counts.values,
-                color_continuous_scale='RdYlGn'
-            )
-            fig.update_traces(textposition='outside')
-            fig.update_layout(
-                yaxis=dict(range=[0, max(sat_counts.values) * 1.15]),
-                showlegend=False
-            )
+            # Chart type selector
+            sat_chart_type = st.selectbox("Chart Type:", ["Bar Chart", "Pie Chart"], key="sat_chart_type")
+            
+            if sat_chart_type == "Bar Chart":
+                fig = px.bar(
+                    x=sat_counts.index,
+                    y=sat_counts.values,
+                    text=[f"{x:.1f}%<br>Count: {count}" for x, count in zip(sat_counts.values, sat_raw_counts.values)],
+                    title='Satisfaction Level (%)',
+                    labels={'x': 'Satisfaction Level', 'y': 'Percentage (%)'},
+                    color=sat_counts.values,
+                    color_continuous_scale='RdYlGn'
+                )
+                fig.update_traces(
+                    textposition='outside',
+                    hovertemplate='<b>%{x}</b><br>Percentage: %{y:.1f}%<extra></extra>'
+                )
+                fig.update_layout(
+                    yaxis=dict(range=[0, max(sat_counts.values) * 1.2]),
+                    showlegend=False
+                )
+            else:  # Pie Chart
+                fig = px.pie(
+                    values=sat_counts.values,
+                    names=sat_counts.index,
+                    title='Satisfaction Level (%)',
+                    hole=0.4
+                )
+                fig.update_traces(
+                    textinfo='label+percent',
+                    textposition='inside',
+                    hovertemplate='<b>%{label}</b><br>Percentage: %{percent}<br>Count: %{value:.0f}<extra></extra>'
+                )
+            
             st.plotly_chart(fig)
         else:
             st.info("No data available for Satisfaction analysis with current filters.")
@@ -634,21 +778,49 @@ elif section == "Basic Attribute Scores":
         if not filtered_df.empty:
             avg_scores = filtered_df[attributes].mean().sort_values(ascending=False)
             
-            fig = px.bar(
-                x=avg_scores.index,
-                y=avg_scores.values,
-                text=[f"{x:.2f}" for x in avg_scores.values],
-                title='Average Attribute Ratings',
-                labels={'x': 'Attribute', 'y': 'Average Rating (1-5)'},
-                color=avg_scores.values,
-                color_continuous_scale='spectral'
-            )
-            fig.update_traces(textposition='outside')
-            fig.update_layout(
-                xaxis={'categoryorder': 'total descending'},
-                yaxis=dict(range=[0, max(avg_scores.values) * 1.15]),
-                showlegend=False
-            )
+            # Chart type selector for attribute ratings
+            attr_chart_type = st.selectbox("Chart Type:", ["Bar Chart", "Horizontal Bar Chart"], key="attr_chart_type")
+            
+            if attr_chart_type == "Bar Chart":
+                fig = px.bar(
+                    x=avg_scores.index,
+                    y=avg_scores.values,
+                    text=[f"{x:.2f}" for x in avg_scores.values],
+                    title='Average Attribute Ratings',
+                    labels={'x': 'Attribute', 'y': 'Average Rating (1-5)'},
+                    color=avg_scores.values,
+                    color_continuous_scale='spectral'
+                )
+                fig.update_traces(
+                    textposition='outside',
+                    hovertemplate='<b>%{x}</b><br>Rating: %{y:.2f}<extra></extra>'
+                )
+                fig.update_layout(
+                    xaxis={'categoryorder': 'total descending'},
+                    yaxis=dict(range=[0, max(avg_scores.values) * 1.15]),
+                    showlegend=False
+                )
+            else:  # Horizontal Bar Chart
+                fig = px.bar(
+                    x=avg_scores.values,
+                    y=avg_scores.index,
+                    text=[f"{x:.2f}" for x in avg_scores.values],
+                    title='Average Attribute Ratings',
+                    labels={'y': 'Attribute', 'x': 'Average Rating (1-5)'},
+                    color=avg_scores.values,
+                    color_continuous_scale='spectral',
+                    orientation='h'
+                )
+                fig.update_traces(
+                    textposition='outside',
+                    hovertemplate='<b>%{y}</b><br>Rating: %{x:.2f}<extra></extra>'
+                )
+                fig.update_layout(
+                    yaxis={'categoryorder': 'total ascending'},
+                    xaxis=dict(range=[0, max(avg_scores.values) * 1.15]),
+                    showlegend=False
+                )
+            
             st.plotly_chart(fig)
         else:
             st.info("No data available for Attribute Ratings with current filters.")
