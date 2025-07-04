@@ -405,9 +405,15 @@ elif section == "Demographic Profile":
                 y=age_counts.values, 
                 text=[f"{x:.1f}%" for x in age_counts.values],
                 title='Age Group Distribution (%)',
-                labels={'x': 'Age Group', 'y': 'Percentage (%)'}
+                labels={'x': 'Age Group', 'y': 'Percentage (%)'},
+                color=age_counts.values,
+                color_continuous_scale='viridis'
             )
             fig.update_traces(textposition='outside')
+            fig.update_layout(
+                yaxis=dict(range=[0, max(age_counts.values) * 1.15]),  # Add 15% padding for labels
+                showlegend=False
+            )
             st.plotly_chart(fig)
         else:
             st.info("No data available for Age Group Distribution with current filters.")
@@ -480,9 +486,15 @@ elif section == "Brand Metrics":
                 y=brand_counts.values,
                 text=[f"{x:.1f}%" for x in brand_counts.values],
                 title='Most Often Consumed Brand (%)',
-                labels={'x': 'Brand', 'y': 'Percentage (%)'}
+                labels={'x': 'Brand', 'y': 'Percentage (%)'},
+                color=brand_counts.values,
+                color_continuous_scale='plasma'
             )
             fig.update_traces(textposition='outside')
+            fig.update_layout(
+                yaxis=dict(range=[0, max(brand_counts.values) * 1.15]),
+                showlegend=False
+            )
             st.plotly_chart(fig)
         else:
             st.info("No data available for Brand analysis with current filters.")
@@ -495,9 +507,15 @@ elif section == "Brand Metrics":
                 y=occasions_counts.values,
                 text=[f"{x:.1f}%" for x in occasions_counts.values],
                 title='Occasions of Buying (%)',
-                labels={'x': 'Occasion', 'y': 'Percentage (%)'}
+                labels={'x': 'Occasion', 'y': 'Percentage (%)'},
+                color=occasions_counts.values,
+                color_continuous_scale='cividis'
             )
             fig.update_traces(textposition='outside')
+            fig.update_layout(
+                yaxis=dict(range=[0, max(occasions_counts.values) * 1.15]),
+                showlegend=False
+            )
             st.plotly_chart(fig)
         else:
             st.info("No data available for Occasions analysis with current filters.")
@@ -515,9 +533,15 @@ elif section == "Brand Metrics":
                 y=freq_counts.values,
                 text=[f"{x:.1f}%" for x in freq_counts.values],
                 title='Frequency of Consumption (%)',
-                labels={'x': 'Frequency', 'y': 'Percentage (%)'}
+                labels={'x': 'Frequency', 'y': 'Percentage (%)'},
+                color=freq_counts.values,
+                color_continuous_scale='turbo'
             )
             fig.update_traces(textposition='outside')
+            fig.update_layout(
+                yaxis=dict(range=[0, max(freq_counts.values) * 1.15]),
+                showlegend=False
+            )
             st.plotly_chart(fig)
         else:
             st.info("No data available for Frequency analysis with current filters.")
@@ -534,9 +558,15 @@ elif section == "Brand Metrics":
                 y=sat_counts.values,
                 text=[f"{x:.1f}%" for x in sat_counts.values],
                 title='Satisfaction Level (%)',
-                labels={'x': 'Satisfaction Level', 'y': 'Percentage (%)'}
+                labels={'x': 'Satisfaction Level', 'y': 'Percentage (%)'},
+                color=sat_counts.values,
+                color_continuous_scale='RdYlGn'
             )
             fig.update_traces(textposition='outside')
+            fig.update_layout(
+                yaxis=dict(range=[0, max(sat_counts.values) * 1.15]),
+                showlegend=False
+            )
             st.plotly_chart(fig)
         else:
             st.info("No data available for Satisfaction analysis with current filters.")
@@ -565,10 +595,16 @@ elif section == "Basic Attribute Scores":
                 y=avg_scores.values,
                 text=[f"{x:.2f}" for x in avg_scores.values],
                 title='Average Attribute Ratings',
-                labels={'x': 'Attribute', 'y': 'Average Rating (1-5)'}
+                labels={'x': 'Attribute', 'y': 'Average Rating (1-5)'},
+                color=avg_scores.values,
+                color_continuous_scale='spectral'
             )
             fig.update_traces(textposition='outside')
-            fig.update_layout(xaxis={'categoryorder': 'total descending'})
+            fig.update_layout(
+                xaxis={'categoryorder': 'total descending'},
+                yaxis=dict(range=[0, max(avg_scores.values) * 1.15]),
+                showlegend=False
+            )
             st.plotly_chart(fig)
         else:
             st.info("No data available for Attribute Ratings with current filters.")
