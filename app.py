@@ -13,12 +13,24 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.tree import DecisionTreeClassifier, plot_tree
 from sklearn import tree
 from sklearn.model_selection import train_test_split
-import statsmodels.api as sm
-from sklearn.decomposition import FactorAnalysis
-from statsmodels.graphics.mosaicplot import mosaic
 from io import BytesIO
-from factor_analyzer import FactorAnalyzer
 import plotly.figure_factory as ff
+
+# Try to import statsmodels with error handling
+try:
+    import statsmodels.api as sm
+    STATSMODELS_AVAILABLE = True
+except ImportError:
+    STATSMODELS_AVAILABLE = False
+    st.warning("Statsmodels not available. Regression analysis will be limited.")
+
+# Try to import factor analysis with error handling
+try:
+    from factor_analyzer import FactorAnalyzer
+    FACTOR_ANALYZER_AVAILABLE = True
+except ImportError:
+    FACTOR_ANALYZER_AVAILABLE = False
+    st.warning("Factor analyzer not available. Factor analysis will be skipped.")
 
 # Set page styling
 st.markdown("""
@@ -697,8 +709,10 @@ elif section == "Basic Attribute Scores":
 elif section == "Regression Analysis":
     st.markdown("<h2 class='subheader'>Regression Analysis</h2>", unsafe_allow_html=True)
     
-    # Check if we have enough data
-    if len(filtered_df) < 10:
+    if not STATSMODELS_AVAILABLE:
+        st.error("Statsmodels is not available. Regression analysis cannot be performed.")
+        st.info("This section requires the statsmodels package to be properly installed.")
+    elif len(filtered_df) < 10:
         st.warning("Insufficient data for regression analysis. Please adjust your filters.")
     else:
         # Prepare data for regression
@@ -739,7 +753,6 @@ elif section == "Regression Analysis":
             st.dataframe(coef_df, use_container_width=True)
             
             # Display key metrics
-            st.write(f"**R-squared:** {model.rsquared:.4f}")# Display key metrics
             st.write(f"**R-squared:** {model.rsquared:.4f}")
             st.write(f"**Adjusted R-squared:** {model.rsquared_adj:.4f}")
             st.write(f"**F-statistic:** {model.fvalue:.4f}")
@@ -914,7 +927,9 @@ elif section == "Decision Tree Analysis":
             if second_feature:
                 st.write(f"- Also influenced by: {second_feature.replace('_Rating', '')}")
             
-            st.write("- These consumers are least likely to recommend your brand")# =======================
+            st.write("- These consumers are least likely to recommend your brand")
+
+# =======================
 # CLUSTER ANALYSIS
 # =======================
 elif section == "Cluster Analysis":
@@ -948,22 +963,27 @@ elif section == "Cluster Analysis":
                         'Brand_Reputation_Rating', 'Availability_Rating', 
                         'Sweetness_Rating', 'Fizziness_Rating']
             
-            # Only perform factor analysis if we have sufficient data
-            if len(filtered_df) >= 50:  # Minimum recommended for factor analysis
-                fa = FactorAnalyzer(n_factors=2, rotation='varimax')
-                fa.fit(filtered_df[attributes])
-                
-                # Get factor loadings
-                loadings = pd.DataFrame(
-                    fa.loadings_,
-                    index=attributes,
-                    columns=['Factor 1', 'Factor 2']
-                )
-                
-                # Display loadings
-                st.dataframe(loadings.round(3), use_container_width=True)
+            # Only perform factor analysis if we have sufficient data and the library is available
+            if not FACTOR_ANALYZER_AVAILABLE:
+                st.info("Factor analyzer library not available. Factor analysis will be skipped.")
+            elif len(filtered_df) >= 50:  # Minimum recommended for factor analysis
+                try:
+                    fa = FactorAnalyzer(n_factors=2, rotation='varimax')
+                    fa.fit(filtered_df[attributes])
+                    
+                    # Get factor loadings
+                    loadings = pd.DataFrame(
+                        fa.loadings_,
+                        index=attributes,
+                        columns=['Factor 1', 'Factor 2']
+                    )
+                    
+                    # Display loadings
+                    st.dataframe(loadings.round(3), use_container_width=True)
+                except Exception as e:
+                    st.error(f"Error in factor analysis: {str(e)}")
             else:
-                st.info("Insufficient data for factor analysis. Minimum of a few hundred records required (minimum 50).")
+                st.info("Insufficient data for factor analysis. Minimum of 50 records required.")
         
         with col2:
             # Cluster centers
