@@ -1566,74 +1566,74 @@ elif section == "Cluster Analysis":
             else:
                 st.info("Insufficient data for factor analysis. Minimum of 50 records required.")
             
-            # Move Cluster Profiles Analysis to left column below Factor Analysis
-            st.subheader("Cluster Profiles Analysis")
+        # Cluster profiles analysis section - FULL WIDTH BELOW both columns
+        st.subheader("Cluster Profiles Analysis")
+        
+        # Create three columns for side-by-side cluster display - FULL PAGE WIDTH
+        cluster_col1, cluster_col2, cluster_col3 = st.columns(3)
+        
+        # Get cluster data for analysis
+        clusters = list(filtered_df['Cluster_Name'].unique())
+        
+        # Display clusters in three columns
+        for i, cluster in enumerate(clusters[:3]):  # Limit to 3 clusters
+            # Choose the appropriate column
+            if i == 0:
+                col = cluster_col1
+            elif i == 1:
+                col = cluster_col2
+            else:
+                col = cluster_col3
             
-            # Create three columns for side-by-side cluster display
-            cluster_col1, cluster_col2, cluster_col3 = st.columns(3)
-            
-            # Get cluster data for analysis
-            clusters = list(filtered_df['Cluster_Name'].unique())
-            
-            # Display clusters in three columns
-            for i, cluster in enumerate(clusters[:3]):  # Limit to 3 clusters
-                # Choose the appropriate column
-                if i == 0:
-                    col = cluster_col1
-                elif i == 1:
-                    col = cluster_col2
-                else:
-                    col = cluster_col3
+            with col:
+                cluster_data = filtered_df[filtered_df['Cluster_Name'] == cluster]
                 
-                with col:
-                    cluster_data = filtered_df[filtered_df['Cluster_Name'] == cluster]
+                # Make cluster name more prominent with styled header
+                st.markdown(f"""
+                <div style='background: linear-gradient(90deg, #667eea 0%, #764ba2 100%); 
+                            color: white; 
+                            padding: 0.8rem; 
+                            border-radius: 0.5rem; 
+                            text-align: center;
+                            margin-bottom: 1rem;
+                            font-weight: bold;
+                            font-size: 1.1rem;'>
+                    {cluster.upper()}
+                    <br><small>({len(cluster_data)} consumers, {len(cluster_data)/len(filtered_df):.1%})</small>
+                </div>
+                """, unsafe_allow_html=True)
+                
+                if len(cluster_data) > 0:
+                    # Top brand preference
+                    top_brand = cluster_data['Most_Often_Consumed_Brand'].value_counts().idxmax()
+                    brand_pct = cluster_data['Most_Often_Consumed_Brand'].value_counts(normalize=True).max() * 100
                     
-                    # Make cluster name more prominent with styled header
-                    st.markdown(f"""
-                    <div style='background: linear-gradient(90deg, #667eea 0%, #764ba2 100%); 
-                                color: white; 
-                                padding: 0.8rem; 
-                                border-radius: 0.5rem; 
-                                text-align: center;
-                                margin-bottom: 1rem;
-                                font-weight: bold;
-                                font-size: 1.1rem;'>
-                        {cluster.upper()}
-                        <br><small>({len(cluster_data)} consumers, {len(cluster_data)/len(filtered_df):.1%})</small>
-                    </div>
-                    """, unsafe_allow_html=True)
+                    # Top occasion
+                    top_occasion = cluster_data['Occasions_of_Buying'].value_counts().idxmax()
+                    occasion_pct = cluster_data['Occasions_of_Buying'].value_counts(normalize=True).max() * 100
                     
-                    if len(cluster_data) > 0:
-                        # Top brand preference
-                        top_brand = cluster_data['Most_Often_Consumed_Brand'].value_counts().idxmax()
-                        brand_pct = cluster_data['Most_Often_Consumed_Brand'].value_counts(normalize=True).max() * 100
-                        
-                        # Top occasion
-                        top_occasion = cluster_data['Occasions_of_Buying'].value_counts().idxmax()
-                        occasion_pct = cluster_data['Occasions_of_Buying'].value_counts(normalize=True).max() * 100
-                        
-                        # Demographics
-                        top_gender = cluster_data['Gender'].value_counts().idxmax()
-                        gender_pct = cluster_data['Gender'].value_counts(normalize=True).max() * 100
-                        
-                        top_age = cluster_data['Age_Group'].value_counts().idxmax()
-                        age_pct = cluster_data['Age_Group'].value_counts(normalize=True).max() * 100
-                        
-                        # Average NPS
-                        avg_nps = cluster_data['NPS_Score'].mean()
-                        
-                        # Top and weakest attributes
-                        top_attribute = cluster_data[attributes].mean().idxmax()
-                        lowest_attribute = cluster_data[attributes].mean().idxmin()
-                        
-                        st.write(f"🥤 Prefers: **{top_brand}** ({brand_pct:.1f}%)")
-                        st.write(f"🛒 Typically buys for: **{top_occasion}** ({occasion_pct:.1f}%)")
-                        st.write(f"👤 Demographics: **{top_gender}** ({gender_pct:.1f}%), **{top_age}** ({age_pct:.1f}%)")
-                        st.write(f"⭐ Avg. NPS: **{avg_nps:.1f}**")
-                        st.write(f"💪 Strongest attribute: **{top_attribute.replace('_Rating', '')}**")
-                        st.write(f"⚠️ Weakest attribute: **{lowest_attribute.replace('_Rating', '')}**")
-                    else:
-                        st.write("No data available for this cluster with current filters.")
+                    # Demographics
+                    top_gender = cluster_data['Gender'].value_counts().idxmax()
+                    gender_pct = cluster_data['Gender'].value_counts(normalize=True).max() * 100
+                    
+                    top_age = cluster_data['Age_Group'].value_counts().idxmax()
+                    age_pct = cluster_data['Age_Group'].value_counts(normalize=True).max() * 100
+                    
+                    # Average NPS
+                    avg_nps = cluster_data['NPS_Score'].mean()
+                    
+                    # Top and weakest attributes
+                    top_attribute = cluster_data[attributes].mean().idxmax()
+                    lowest_attribute = cluster_data[attributes].mean().idxmin()
+                    
+                    st.write(f"🥤 Prefers: **{top_brand}** ({brand_pct:.1f}%)")
+                    st.write(f"🛒 Typically buys for: **{top_occasion}** ({occasion_pct:.1f}%)")
+                    st.write(f"👤 Demographics: **{top_gender}** ({gender_pct:.1f}%), **{top_age}** ({age_pct:.1f}%)")
+                    st.write(f"⭐ Avg. NPS: **{avg_nps:.1f}**")
+                    st.write(f"💪 Strongest attribute: **{top_attribute.replace('_Rating', '')}**")
+                    st.write(f"⚠️ Weakest attribute: **{lowest_attribute.replace('_Rating', '')}**")
+                else:
+                    st.write("No data available for this cluster with current filters.")
         
         with col2:
             # Cluster centers radar chart
