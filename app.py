@@ -1305,6 +1305,15 @@ elif section == "Regression Analysis":
             fig.add_hline(y=0, line_dash="dash", line_color="red")
             st.plotly_chart(fig)
         
+        # Add interpretation guide for model performance charts
+        st.markdown("""
+        **📊 How to Read These Charts:**
+        
+        **Predicted vs Actual (Left):** Points closer to the red diagonal line indicate better predictions. The blue trend line shows overall model performance - if it closely follows the red line, the model is performing well.
+        
+        **Residuals vs Predicted (Right):** Points should be randomly scattered around the horizontal red line (zero). Patterns in this plot may indicate model issues - good models show random scatter with no clear patterns.
+        """)
+        
         # Key findings summary
         st.subheader("Key Regression Findings")
         
