@@ -1,47 +1,47 @@
 Respondent_ID,Age,Gender,Income_Level,Frequency_of_Consumption,Brand_Preference,Satisfaction_Level,Purchase_Location,Reason_for_Choice,Occasions_of_Buying,Most_Often_Consumed_Brand,Consumed_With,NPS_Score,Taste_Rating,Price_Rating,Packaging_Rating,Brand_Reputation_Rating,Availability_Rating,Sweetness_Rating,Fizziness_Rating
-905,55,Male,High,Daily,Diet Coke,Satisfied,Convenience Store,Availability,Home,Pepsi,With Family,0,5,5,2,1,3,5,2
-455,51,Male,High,Rarely,Pepsi,Very Satisfied,Online,Other,Sports Events,Coke,With Friends,0,5,4,3,3,2,4,4
-751,28,Male,High,Weekly,Pepsi,Dissatisfied,Vending Machine,Availability,Sports Events,Coke,With Family,0,3,4,4,2,1,2,1
-640,25,Male,High,Never,Pepsi Light,Very Satisfied,Supermarket,Price,Home,Pepsi Light,With Family,0,3,1,3,2,1,2,1
-373,59,Male,High,Weekly,Coke,Dissatisfied,Vending Machine,Availability,Restaurants,Pepsi Light,With Family,0,3,4,2,3,2,2,4
-482,18,Male,High,Monthly,Coke,Satisfied,Convenience Store,Availability,Other,Pepsi Light,Other,0,2,5,1,2,5,2,4
-272,34,Female,High,Daily,RC Cola,Very Dissatisfied,Supermarket,Brand Loyalty,Parties,Coke,With Family,0,5,1,1,3,5,4,4
-435,19,Female,High,Rarely,RC Cola,Satisfied,Supermarket,Brand Loyalty,Work,Coke,Alone,0,4,4,4,1,1,3,2
-591,53,Non-Binary,High,Never,RC Cola,Satisfied,Vending Machine,Taste,Parties,Diet Coke,With Colleagues,0,2,3,2,2,3,4,4
-39,22,Female,High,Weekly,Coke,Satisfied,Online,Availability,Restaurants,Coke,With Family,0,1,5,2,5,4,2,3
-720,56,Male,High,Never,Coke,Satisfied,Vending Machine,Brand Loyalty,Sports Events,Coke,With Family,0,3,1,5,4,1,2,4
-13,24,Male,High,Never,Coke,Dissatisfied,Other,Price,Other,RC Cola,Alone,0,2,3,2,1,4,5,1
-223,28,Male,High,Never,Coke,Neutral,Convenience Store,Other,Travel,Diet Coke,Other,0,4,5,1,5,2,1,5
-675,37,Male,High,Monthly,Diet Coke,Dissatisfied,Supermarket,Brand Loyalty,Parties,RC Cola,Other,0,2,5,1,2,5,3,5
-301,18,Male,High,Never,Diet Coke,Very Dissatisfied,Convenience Store,Taste,Sports Events,Diet Coke,With Colleagues,0,2,4,1,3,5,2,3
-962,24,Female,High,Daily,Pepsi,Dissatisfied,Supermarket,Other,Parties,Pepsi Light,Alone,0,2,3,1,4,4,2,5
-127,22,Female,High,Daily,RC Cola,Very Dissatisfied,Convenience Store,Price,Sports Events,Coke,With Family,0,1,4,3,2,1,5,1
-860,57,Male,High,Never,RC Cola,Satisfied,Online,Other,Home,Coke,Other,0,5,4,3,1,3,2,3
-129,20,Male,High,Monthly,RC Cola,Satisfied,Convenience Store,Availability,Work,Pepsi Light,With Family,0,2,4,5,2,2,1,2
-723,30,Prefer Not to Say,High,Weekly,Pepsi Light,Satisfied,Online,Other,Parties,Diet Coke,With Friends,0,4,5,3,3,1,1,4
-918,46,Male,Low,Daily,Diet Coke,Very Satisfied,Vending Machine,Taste,Other,Diet Coke,Other,0,4,5,5,2,3,1,3
-79,43,Male,Low,Daily,Pepsi,Neutral,Supermarket,Brand Loyalty,Restaurants,Diet Coke,Alone,0,3,5,1,3,1,2,1
-118,61,Male,Low,Never,Pepsi,Dissatisfied,Vending Machine,Brand Loyalty,Parties,Diet Coke,With Colleagues,0,5,1,3,4,4,3,5
+905,55,Male,High,Daily,Diet Coke,Satisfied,Convenience Store,Availability,Home,Pepsi,With Family,10,5,5,2,1,3,5,2
+455,51,Male,High,Rarely,Pepsi,Very Satisfied,Online,Other,Sports Events,Coke,With Friends,10,5,4,3,3,2,4,4
+751,28,Male,High,Weekly,Pepsi,Dissatisfied,Vending Machine,Availability,Sports Events,Coke,With Family,10,3,4,4,2,1,2,1
+640,25,Male,High,Never,Pepsi Light,Very Satisfied,Supermarket,Price,Home,Pepsi Light,With Family,10,3,1,3,2,1,2,1
+373,59,Male,High,Weekly,Coke,Dissatisfied,Vending Machine,Availability,Restaurants,Pepsi Light,With Family,10,3,4,2,3,2,2,4
+482,18,Male,High,Monthly,Coke,Satisfied,Convenience Store,Availability,Other,Pepsi Light,Other,10,2,5,1,2,5,2,4
+272,34,Female,High,Daily,RC Cola,Very Dissatisfied,Supermarket,Brand Loyalty,Parties,Coke,With Family,10,5,1,1,3,5,4,4
+435,19,Female,High,Rarely,RC Cola,Satisfied,Supermarket,Brand Loyalty,Work,Coke,Alone,10,4,4,4,1,1,3,2
+591,53,Non-Binary,High,Never,RC Cola,Satisfied,Vending Machine,Taste,Parties,Diet Coke,With Colleagues,10,2,3,2,2,3,4,4
+39,22,Female,High,Weekly,Coke,Satisfied,Online,Availability,Restaurants,Coke,With Family,10,1,5,2,5,4,2,3
+720,56,Male,High,Never,Coke,Satisfied,Vending Machine,Brand Loyalty,Sports Events,Coke,With Family,10,3,1,5,4,1,2,4
+13,24,Male,High,Never,Coke,Dissatisfied,Other,Price,Other,RC Cola,Alone,10,2,3,2,1,4,5,1
+223,28,Male,High,Never,Coke,Neutral,Convenience Store,Other,Travel,Diet Coke,Other,10,4,5,1,5,2,1,5
+675,37,Male,High,Monthly,Diet Coke,Dissatisfied,Supermarket,Brand Loyalty,Parties,RC Cola,Other,10,2,5,1,2,5,3,5
+301,18,Male,High,Never,Diet Coke,Very Dissatisfied,Convenience Store,Taste,Sports Events,Diet Coke,With Colleagues,10,2,4,1,3,5,2,3
+962,24,Female,High,Daily,Pepsi,Dissatisfied,Supermarket,Other,Parties,Pepsi Light,Alone,10,2,3,1,4,4,2,5
+127,22,Female,High,Daily,RC Cola,Very Dissatisfied,Convenience Store,Price,Sports Events,Coke,With Family,10,1,4,3,2,1,5,1
+860,57,Male,High,Never,RC Cola,Satisfied,Online,Other,Home,Coke,Other,10,5,4,3,1,3,2,3
+129,20,Male,High,Monthly,RC Cola,Satisfied,Convenience Store,Availability,Work,Pepsi Light,With Family,10,2,4,5,2,2,1,2
+723,30,Prefer Not to Say,High,Weekly,Pepsi Light,Satisfied,Online,Other,Parties,Diet Coke,With Friends,10,4,5,3,3,1,1,4
+918,46,Male,Low,Daily,Diet Coke,Very Satisfied,Vending Machine,Taste,Other,Diet Coke,Other,10,4,5,5,2,3,1,3
+79,43,Male,Low,Daily,Pepsi,Neutral,Supermarket,Brand Loyalty,Restaurants,Diet Coke,Alone,10,3,5,1,3,1,2,1
+118,61,Male,Low,Never,Pepsi,Dissatisfied,Vending Machine,Brand Loyalty,Parties,Diet Coke,With Colleagues,10,5,1,3,4,4,3,5
 451,26,Male,Low,Monthly,Pepsi Light,Neutral,Supermarket,Availability,Work,Pepsi Light,With Colleagues,0,5,4,1,1,1,4,5
 687,28,Male,Low,Rarely,Pepsi Light,Very Dissatisfied,Supermarket,Price,Travel,Pepsi Light,With Friends,0,5,3,4,1,1,5,3
 954,20,Male,Low,Monthly,Pepsi Light,Very Dissatisfied,Online,Price,Sports Events,Pepsi Light,With Friends,0,3,5,2,2,1,3,1
-374,51,Male,Low,Weekly,Pepsi Light,Neutral,Other,Other,Home,Diet Coke,With Friends,0,4,5,1,1,1,3,3
-90,48,Female,Low,Monthly,Coke,Neutral,Supermarket,Taste,Sports Events,Coke,With Family,0,5,2,3,3,4,2,4
-158,24,Female,Low,Weekly,Coke,Very Dissatisfied,Vending Machine,Other,Home,Coke,Alone,0,1,2,1,3,1,5,5
-120,48,Male,Low,Weekly,Coke,Very Dissatisfied,Other,Brand Loyalty,Other,Diet Coke,Alone,0,2,1,2,3,5,4,5
-731,21,Female,Low,Monthly,Diet Coke,Neutral,Other,Availability,Other,Diet Coke,With Colleagues,0,4,4,5,5,3,5,4
-696,52,Non-Binary,Low,Daily,Pepsi Light,Dissatisfied,Online,Other,Other,Coke,With Colleagues,0,4,1,3,1,4,1,5
-443,45,Male,Low,Daily,Pepsi Light,Dissatisfied,Vending Machine,Taste,Parties,Pepsi,With Friends,0,1,5,5,5,1,2,1
-993,41,Female,Low,Weekly,Pepsi Light,Dissatisfied,Supermarket,Other,Sports Events,RC Cola,With Colleagues,0,1,5,3,2,2,2,1
+374,51,Male,Low,Weekly,Pepsi Light,Neutral,Other,Other,Home,Diet Coke,With Friends,10,4,5,1,1,1,3,3
+90,48,Female,Low,Monthly,Coke,Neutral,Supermarket,Taste,Sports Events,Coke,With Family,9,5,2,3,3,4,2,4
+158,24,Female,Low,Weekly,Coke,Very Dissatisfied,Vending Machine,Other,Home,Coke,Alone,10,1,2,1,3,1,5,5
+120,48,Male,Low,Weekly,Coke,Very Dissatisfied,Other,Brand Loyalty,Other,Diet Coke,Alone,9,2,1,2,3,5,4,5
+731,21,Female,Low,Monthly,Diet Coke,Neutral,Other,Availability,Other,Diet Coke,With Colleagues,9,4,4,5,5,3,5,4
+696,52,Non-Binary,Low,Daily,Pepsi Light,Dissatisfied,Online,Other,Other,Coke,With Colleagues,9,4,1,3,1,4,1,5
+443,45,Male,Low,Daily,Pepsi Light,Dissatisfied,Vending Machine,Taste,Parties,Pepsi,With Friends,9,1,5,5,5,1,2,1
+993,41,Female,Low,Weekly,Pepsi Light,Dissatisfied,Supermarket,Other,Sports Events,RC Cola,With Colleagues,10,1,5,3,2,2,2,1
 735,22,Female,Low,Rarely,Coke,Very Satisfied,Vending Machine,Taste,Travel,RC Cola,With Family,0,4,3,3,4,4,2,2
 524,25,Male,Low,Monthly,Pepsi,Neutral,Vending Machine,Taste,Sports Events,Pepsi,With Family,0,3,5,2,4,5,1,4
-643,47,Female,Low,Daily,Pepsi,Satisfied,Online,Price,Travel,RC Cola,With Family,0,4,1,1,1,5,3,4
-677,64,Female,Low,Daily,RC Cola,Satisfied,Vending Machine,Availability,Travel,Coke,With Colleagues,0,1,2,2,3,5,3,3
-61,46,Prefer Not to Say,Low,Rarely,RC Cola,Very Dissatisfied,Vending Machine,Other,Travel,Pepsi,Other,0,3,4,5,5,4,5,4
-163,21,Prefer Not to Say,Low,Daily,RC Cola,Very Satisfied,Convenience Store,Taste,Travel,Diet Coke,With Friends,0,2,3,4,1,2,4,1
-196,20,Prefer Not to Say,Low,Daily,Pepsi Light,Dissatisfied,Convenience Store,Price,Home,Pepsi Light,Alone,0,3,3,5,4,4,4,5
-509,31,Prefer Not to Say,Low,Daily,Pepsi Light,Very Dissatisfied,Vending Machine,Availability,Travel,Diet Coke,Other,0,1,4,2,1,5,1,2
-622,62,Male,Middle,Monthly,Pepsi,Neutral,Vending Machine,Taste,Home,Pepsi,With Family,0,5,1,5,4,1,3,4
+643,47,Female,Low,Daily,Pepsi,Satisfied,Online,Price,Travel,RC Cola,With Family,10,4,1,1,1,5,3,4
+677,64,Female,Low,Daily,RC Cola,Satisfied,Vending Machine,Availability,Travel,Coke,With Colleagues,9,1,2,2,3,5,3,3
+61,46,Prefer Not to Say,Low,Rarely,RC Cola,Very Dissatisfied,Vending Machine,Other,Travel,Pepsi,Other,10,3,4,5,5,4,5,4
+163,21,Prefer Not to Say,Low,Daily,RC Cola,Very Satisfied,Convenience Store,Taste,Travel,Diet Coke,With Friends,9,2,3,4,1,2,4,1
+196,20,Prefer Not to Say,Low,Daily,Pepsi Light,Dissatisfied,Convenience Store,Price,Home,Pepsi Light,Alone,9,3,3,5,4,4,4,5
+509,31,Prefer Not to Say,Low,Daily,Pepsi Light,Very Dissatisfied,Vending Machine,Availability,Travel,Diet Coke,Other,9,1,4,2,1,5,1,2
+622,62,Male,Middle,Monthly,Pepsi,Neutral,Vending Machine,Taste,Home,Pepsi,With Family,9,5,1,5,4,1,3,4
 727,44,Male,Middle,Monthly,Pepsi,Very Satisfied,Convenience Store,Price,Travel,RC Cola,With Colleagues,10,5,2,1,5,2,4,2
 864,54,Male,Middle,Rarely,RC Cola,Satisfied,Online,Brand Loyalty,Work,Diet Coke,Other,10,3,5,4,2,5,2,1
 759,22,Male,Middle,Daily,Pepsi Light,Very Satisfied,Supermarket,Price,Other,RC Cola,With Family,10,4,1,3,3,3,4,2
@@ -76,14 +76,14 @@ Respondent_ID,Age,Gender,Income_Level,Frequency_of_Consumption,Brand_Preference,
 416,38,Male,Low,Daily,Coke,Neutral,Convenience Store,Brand Loyalty,Other,RC Cola,With Family,9,1,1,1,2,5,1,3
 375,41,Female,Low,Daily,Coke,Very Satisfied,Vending Machine,Taste,Restaurants,Diet Coke,With Family,1,5,4,5,5,5,2,4
 619,53,Male,Low,Never,Diet Coke,Very Satisfied,Vending Machine,Brand Loyalty,Restaurants,Coke,With Colleagues,1,5,4,4,3,4,5,3
-354,25,Male,Low,Weekly,Diet Coke,Neutral,Other,Brand Loyalty,Parties,Pepsi Light,With Family,1,3,4,4,2,1,3,3
-935,63,Female,Low,Rarely,Pepsi,Dissatisfied,Supermarket,Brand Loyalty,Travel,Pepsi,Other,1,2,1,5,5,2,5,3
-700,36,Male,Low,Daily,RC Cola,Very Satisfied,Online,Other,Work,Coke,With Colleagues,1,3,1,2,1,5,3,2
-426,34,Female,Low,Daily,Pepsi Light,Very Satisfied,Supermarket,Availability,Other,RC Cola,With Colleagues,1,3,5,4,3,3,4,2
-898,37,Female,Low,Daily,Pepsi,Dissatisfied,Other,Taste,Travel,Coke,With Colleagues,1,3,2,1,1,5,5,4
-665,44,Male,Middle,Rarely,Pepsi,Very Satisfied,Convenience Store,Price,Home,Pepsi,With Family,1,5,4,4,2,1,3,3
-740,60,Male,Middle,Never,RC Cola,Satisfied,Online,Availability,Restaurants,Coke,With Colleagues,1,1,5,3,5,2,3,4
-496,57,Male,Middle,Rarely,Pepsi Light,Dissatisfied,Other,Taste,Parties,Pepsi Light,With Family,1,4,1,2,1,5,1,3
+354,25,Male,Low,Weekly,Diet Coke,Neutral,Other,Brand Loyalty,Parties,Pepsi Light,With Family,10,3,4,4,2,1,3,3
+935,63,Female,Low,Rarely,Pepsi,Dissatisfied,Supermarket,Brand Loyalty,Travel,Pepsi,Other,9,2,1,5,5,2,5,3
+700,36,Male,Low,Daily,RC Cola,Very Satisfied,Online,Other,Work,Coke,With Colleagues,10,3,1,2,1,5,3,2
+426,34,Female,Low,Daily,Pepsi Light,Very Satisfied,Supermarket,Availability,Other,RC Cola,With Colleagues,9,3,5,4,3,3,4,2
+898,37,Female,Low,Daily,Pepsi,Dissatisfied,Other,Taste,Travel,Coke,With Colleagues,9,3,2,1,1,5,5,4
+665,44,Male,Middle,Rarely,Pepsi,Very Satisfied,Convenience Store,Price,Home,Pepsi,With Family,9,5,4,4,2,1,3,3
+740,60,Male,Middle,Never,RC Cola,Satisfied,Online,Availability,Restaurants,Coke,With Colleagues,9,1,5,3,5,2,3,4
+496,57,Male,Middle,Rarely,Pepsi Light,Dissatisfied,Other,Taste,Parties,Pepsi Light,With Family,10,4,1,2,1,5,1,3
 776,61,Female,Middle,Daily,Coke,Very Satisfied,Vending Machine,Taste,Other,Pepsi Light,With Family,1,1,3,1,5,4,2,3
 406,49,Male,Middle,Never,Coke,Very Dissatisfied,Other,Availability,Parties,Diet Coke,With Colleagues,1,5,3,4,5,3,3,5
 827,39,Female,Middle,Rarely,Coke,Very Dissatisfied,Other,Availability,Work,Diet Coke,With Family,1,1,4,4,2,4,1,2
@@ -151,22 +151,22 @@ Respondent_ID,Age,Gender,Income_Level,Frequency_of_Consumption,Brand_Preference,
 713,47,Female,High,Daily,Coke,Satisfied,Convenience Store,Availability,Other,Coke,With Friends,3,5,1,2,4,1,3,3
 265,56,Female,High,Rarely,Coke,Satisfied,Convenience Store,Taste,Sports Events,Pepsi Light,With Family,3,3,5,1,1,1,5,3
 517,51,Male,High,Daily,Coke,Neutral,Online,Availability,Other,Pepsi Light,Alone,3,1,3,5,4,1,3,4
-941,38,Female,High,Daily,Coke,Satisfied,Convenience Store,Taste,Travel,Pepsi Light,With Family,3,2,1,2,4,1,5,3
-710,37,Female,High,Monthly,Diet Coke,Dissatisfied,Other,Price,Restaurants,Coke,With Colleagues,3,3,2,4,2,4,4,3
-762,30,Male,High,Rarely,Pepsi,Neutral,Online,Taste,Sports Events,Pepsi Light,Other,6,5,2,5,5,1,1,4
-789,60,Female,High,Monthly,Pepsi,Dissatisfied,Convenience Store,Taste,Sports Events,Diet Coke,With Family,6,4,4,5,3,1,5,3
-764,21,Female,High,Weekly,RC Cola,Dissatisfied,Supermarket,Availability,Home,Pepsi,Alone,6,4,5,5,2,5,2,1
-104,60,Non-Binary,High,Monthly,RC Cola,Very Satisfied,Other,Price,Parties,Diet Coke,With Colleagues,6,4,4,3,2,5,5,5
-907,30,Female,High,Rarely,Coke,Neutral,Online,Other,Other,Pepsi Light,Other,6,1,2,4,3,1,4,1
-32,64,Male,High,Monthly,Coke,Very Dissatisfied,Online,Availability,Travel,Pepsi,Other,6,3,3,1,2,2,2,2
-172,46,Male,High,Rarely,Coke,Dissatisfied,Convenience Store,Availability,Work,RC Cola,Other,6,3,1,3,4,2,5,2
-46,34,Female,High,Monthly,Diet Coke,Neutral,Supermarket,Brand Loyalty,Sports Events,Pepsi,Alone,6,5,4,3,2,1,2,2
-336,43,Male,High,Weekly,Diet Coke,Satisfied,Convenience Store,Taste,Parties,Pepsi,Alone,6,1,5,2,4,2,5,3
-241,43,Male,High,Never,Pepsi,Satisfied,Other,Availability,Sports Events,Coke,With Family,6,3,5,4,5,2,5,2
-310,35,Male,Low,Never,RC Cola,Very Dissatisfied,Online,Price,Other,Coke,With Colleagues,6,1,2,2,1,1,3,2
-92,56,Male,Low,Never,RC Cola,Dissatisfied,Vending Machine,Price,Sports Events,Pepsi,With Colleagues,6,2,4,1,5,1,3,1
-588,46,Male,Low,Daily,Diet Coke,Dissatisfied,Convenience Store,Other,Work,Diet Coke,With Colleagues,6,2,1,3,1,1,3,4
-468,55,Female,Low,Monthly,RC Cola,Very Dissatisfied,Vending Machine,Taste,Work,Coke,Other,6,1,1,1,2,2,2,1
+941,38,Female,High,Daily,Coke,Satisfied,Convenience Store,Taste,Travel,Pepsi Light,With Family,9,2,1,2,4,1,5,3
+710,37,Female,High,Monthly,Diet Coke,Dissatisfied,Other,Price,Restaurants,Coke,With Colleagues,9,3,2,4,2,4,4,3
+762,30,Male,High,Rarely,Pepsi,Neutral,Online,Taste,Sports Events,Pepsi Light,Other,9,5,2,5,5,1,1,4
+789,60,Female,High,Monthly,Pepsi,Dissatisfied,Convenience Store,Taste,Sports Events,Diet Coke,With Family,9,4,4,5,3,1,5,3
+764,21,Female,High,Weekly,RC Cola,Dissatisfied,Supermarket,Availability,Home,Pepsi,Alone,9,4,5,5,2,5,2,1
+104,60,Non-Binary,High,Monthly,RC Cola,Very Satisfied,Other,Price,Parties,Diet Coke,With Colleagues,9,4,4,3,2,5,5,5
+907,30,Female,High,Rarely,Coke,Neutral,Online,Other,Other,Pepsi Light,Other,9,1,2,4,3,1,4,1
+32,64,Male,High,Monthly,Coke,Very Dissatisfied,Online,Availability,Travel,Pepsi,Other,10,3,3,1,2,2,2,2
+172,46,Male,High,Rarely,Coke,Dissatisfied,Convenience Store,Availability,Work,RC Cola,Other,9,3,1,3,4,2,5,2
+46,34,Female,High,Monthly,Diet Coke,Neutral,Supermarket,Brand Loyalty,Sports Events,Pepsi,Alone,10,5,4,3,2,1,2,2
+336,43,Male,High,Weekly,Diet Coke,Satisfied,Convenience Store,Taste,Parties,Pepsi,Alone,9,1,5,2,4,2,5,3
+241,43,Male,High,Never,Pepsi,Satisfied,Other,Availability,Sports Events,Coke,With Family,9,3,5,4,5,2,5,2
+310,35,Male,Low,Never,RC Cola,Very Dissatisfied,Online,Price,Other,Coke,With Colleagues,9,1,2,2,1,1,3,2
+92,56,Male,Low,Never,RC Cola,Dissatisfied,Vending Machine,Price,Sports Events,Pepsi,With Colleagues,9,2,4,1,5,1,3,1
+588,46,Male,Low,Daily,Diet Coke,Dissatisfied,Convenience Store,Other,Work,Diet Coke,With Colleagues,10,2,1,3,1,1,3,4
+468,55,Female,Low,Monthly,RC Cola,Very Dissatisfied,Vending Machine,Taste,Work,Coke,Other,9,1,1,1,2,2,2,1
 505,51,Female,Low,Weekly,RC Cola,Neutral,Other,Price,Travel,Pepsi Light,With Friends,6,5,4,3,5,4,1,1
 737,20,Male,Low,Monthly,Pepsi Light,Very Satisfied,Vending Machine,Availability,Other,Coke,With Friends,6,5,2,1,3,5,1,3
 324,23,Male,Low,Weekly,Pepsi Light,Very Satisfied,Online,Price,Parties,Pepsi,Alone,6,3,5,4,4,5,3,3
@@ -177,14 +177,14 @@ Respondent_ID,Age,Gender,Income_Level,Frequency_of_Consumption,Brand_Preference,
 856,27,Male,Low,Never,Coke,Dissatisfied,Other,Taste,Home,Diet Coke,With Friends,6,3,4,3,1,1,4,3
 899,56,Male,Low,Daily,Diet Coke,Dissatisfied,Supermarket,Taste,Travel,Coke,With Colleagues,3,5,4,5,3,4,3,1
 627,32,Male,Low,Monthly,Diet Coke,Satisfied,Vending Machine,Taste,Other,Pepsi Light,Other,3,2,2,1,5,1,4,4
-806,49,Female,Low,Never,RC Cola,Very Dissatisfied,Convenience Store,Taste,Other,Coke,Other,3,3,2,3,2,3,4,1
-887,51,Female,Low,Daily,RC Cola,Neutral,Vending Machine,Taste,Sports Events,Coke,With Family,3,3,3,1,2,2,1,1
-927,62,Prefer Not to Say,Low,Rarely,RC Cola,Very Satisfied,Supermarket,Brand Loyalty,Home,Diet Coke,Other,3,4,4,4,3,1,1,2
-215,51,Prefer Not to Say,Low,Never,Pepsi Light,Very Satisfied,Convenience Store,Brand Loyalty,Work,Coke,Other,3,1,1,3,4,4,4,2
-142,64,Male,Middle,Monthly,RC Cola,Neutral,Online,Other,Work,Pepsi Light,With Family,3,1,5,4,4,5,4,5
-183,57,Male,Middle,Daily,RC Cola,Very Satisfied,Supermarket,Other,Travel,Diet Coke,Alone,3,3,2,5,3,5,3,2
-237,43,Male,Middle,Monthly,Pepsi Light,Very Satisfied,Supermarket,Other,Parties,Pepsi,With Friends,3,2,3,1,4,3,1,2
-446,47,Male,Middle,Weekly,Coke,Satisfied,Supermarket,Brand Loyalty,Parties,Pepsi,With Family,3,2,4,2,2,2,2,2
+806,49,Female,Low,Never,RC Cola,Very Dissatisfied,Convenience Store,Taste,Other,Coke,Other,10,3,2,3,2,3,4,1
+887,51,Female,Low,Daily,RC Cola,Neutral,Vending Machine,Taste,Sports Events,Coke,With Family,9,3,3,1,2,2,1,1
+927,62,Prefer Not to Say,Low,Rarely,RC Cola,Very Satisfied,Supermarket,Brand Loyalty,Home,Diet Coke,Other,10,4,4,4,3,1,1,2
+215,51,Prefer Not to Say,Low,Never,Pepsi Light,Very Satisfied,Convenience Store,Brand Loyalty,Work,Coke,Other,9,1,1,3,4,4,4,2
+142,64,Male,Middle,Monthly,RC Cola,Neutral,Online,Other,Work,Pepsi Light,With Family,9,1,5,4,4,5,4,5
+183,57,Male,Middle,Daily,RC Cola,Very Satisfied,Supermarket,Other,Travel,Diet Coke,Alone,9,3,2,5,3,5,3,2
+237,43,Male,Middle,Monthly,Pepsi Light,Very Satisfied,Supermarket,Other,Parties,Pepsi,With Friends,9,2,3,1,4,3,1,2
+446,47,Male,Middle,Weekly,Coke,Satisfied,Supermarket,Brand Loyalty,Parties,Pepsi,With Family,10,2,4,2,2,2,2,2
 868,25,Male,Middle,Daily,Diet Coke,Satisfied,Other,Brand Loyalty,Travel,Pepsi,Alone,3,4,3,4,2,1,4,1
 671,18,Male,Middle,Monthly,Pepsi,Satisfied,Other,Price,Work,Pepsi Light,Alone,3,3,2,5,1,1,3,1
 3,32,Male,Middle,Monthly,Pepsi,Very Satisfied,Convenience Store,Price,Work,RC Cola,With Friends,3,4,3,1,1,2,1,4
@@ -209,24 +209,24 @@ Respondent_ID,Age,Gender,Income_Level,Frequency_of_Consumption,Brand_Preference,
 995,39,Female,High,Daily,Diet Coke,Very Satisfied,Other,Taste,Travel,Pepsi,With Colleagues,5,1,5,3,5,5,1,4
 931,51,Female,High,Weekly,Pepsi,Neutral,Online,Price,Sports Events,Coke,With Friends,5,4,3,4,2,3,4,1
 807,34,Female,High,Daily,Pepsi,Very Satisfied,Supermarket,Taste,Sports Events,Pepsi Light,Other,5,5,3,1,1,2,5,4
-915,53,Female,High,Weekly,Pepsi,Neutral,Online,Availability,Restaurants,Pepsi Light,With Friends,5,1,4,1,1,2,4,3
-7,30,Female,High,Rarely,Pepsi Light,Satisfied,Other,Price,Sports Events,Diet Coke,With Friends,5,1,4,3,4,5,4,1
-35,63,Female,High,Daily,Pepsi,Very Satisfied,Vending Machine,Other,Work,Coke,Alone,5,5,2,4,5,2,1,3
-788,20,Female,High,Monthly,Pepsi,Very Satisfied,Online,Other,Sports Events,Coke,Other,5,5,5,2,5,4,2,2
-180,43,Male,High,Never,Pepsi,Very Dissatisfied,Convenience Store,Taste,Sports Events,Pepsi,Alone,5,1,5,5,5,1,1,2
-174,27,Prefer Not to Say,High,Weekly,RC Cola,Neutral,Convenience Store,Other,Other,Pepsi,Other,4,3,2,1,3,4,4,4
-353,28,Prefer Not to Say,High,Weekly,RC Cola,Neutral,Online,Price,Work,Pepsi,Alone,4,4,1,4,2,3,2,2
-563,49,Prefer Not to Say,High,Monthly,Pepsi Light,Dissatisfied,Vending Machine,Price,Restaurants,Pepsi Light,Other,4,5,5,5,1,2,3,5
-405,36,Female,Low,Rarely,Pepsi Light,Dissatisfied,Vending Machine,Brand Loyalty,Work,RC Cola,With Colleagues,4,5,1,1,5,5,4,2
-139,57,Male,Low,Weekly,Coke,Very Dissatisfied,Online,Brand Loyalty,Travel,Pepsi,With Colleagues,4,4,4,2,2,5,4,2
-407,44,Male,Low,Daily,Diet Coke,Satisfied,Supermarket,Price,Home,Pepsi,Alone,4,4,2,2,5,4,4,5
-94,43,Male,Low,Rarely,Pepsi,Very Satisfied,Supermarket,Other,Work,Pepsi,With Family,4,3,5,5,3,1,2,4
-132,44,Male,Low,Weekly,RC Cola,Neutral,Vending Machine,Price,Other,Pepsi,Alone,4,1,5,4,2,4,2,4
-314,58,Male,Low,Daily,RC Cola,Very Dissatisfied,Other,Availability,Home,Pepsi,With Colleagues,4,4,2,3,5,5,5,5
-936,58,Male,Low,Monthly,RC Cola,Neutral,Vending Machine,Taste,Travel,Diet Coke,Alone,4,5,2,5,1,1,1,2
-162,51,Male,Low,Daily,Coke,Neutral,Vending Machine,Other,Restaurants,Coke,With Friends,4,5,4,2,2,2,3,5
-691,47,Female,Low,Weekly,Coke,Dissatisfied,Vending Machine,Availability,Home,RC Cola,Alone,4,3,5,1,1,5,2,5
-527,50,Male,Low,Daily,Diet Coke,Satisfied,Convenience Store,Brand Loyalty,Parties,Coke,With Family,4,5,1,4,5,3,3,3
+915,53,Female,High,Weekly,Pepsi,Neutral,Online,Availability,Restaurants,Pepsi Light,With Friends,10,1,4,1,1,2,4,3
+7,30,Female,High,Rarely,Pepsi Light,Satisfied,Other,Price,Sports Events,Diet Coke,With Friends,9,1,4,3,4,5,4,1
+35,63,Female,High,Daily,Pepsi,Very Satisfied,Vending Machine,Other,Work,Coke,Alone,10,5,2,4,5,2,1,3
+788,20,Female,High,Monthly,Pepsi,Very Satisfied,Online,Other,Sports Events,Coke,Other,9,5,5,2,5,4,2,2
+180,43,Male,High,Never,Pepsi,Very Dissatisfied,Convenience Store,Taste,Sports Events,Pepsi,Alone,9,1,5,5,5,1,1,2
+174,27,Prefer Not to Say,High,Weekly,RC Cola,Neutral,Convenience Store,Other,Other,Pepsi,Other,9,3,2,1,3,4,4,4
+353,28,Prefer Not to Say,High,Weekly,RC Cola,Neutral,Online,Price,Work,Pepsi,Alone,9,4,1,4,2,3,2,2
+563,49,Prefer Not to Say,High,Monthly,Pepsi Light,Dissatisfied,Vending Machine,Price,Restaurants,Pepsi Light,Other,10,5,5,5,1,2,3,5
+405,36,Female,Low,Rarely,Pepsi Light,Dissatisfied,Vending Machine,Brand Loyalty,Work,RC Cola,With Colleagues,9,5,1,1,5,5,4,2
+139,57,Male,Low,Weekly,Coke,Very Dissatisfied,Online,Brand Loyalty,Travel,Pepsi,With Colleagues,9,4,4,2,2,5,4,2
+407,44,Male,Low,Daily,Diet Coke,Satisfied,Supermarket,Price,Home,Pepsi,Alone,9,4,2,2,5,4,4,5
+94,43,Male,Low,Rarely,Pepsi,Very Satisfied,Supermarket,Other,Work,Pepsi,With Family,9,3,5,5,3,1,2,4
+132,44,Male,Low,Weekly,RC Cola,Neutral,Vending Machine,Price,Other,Pepsi,Alone,9,1,5,4,2,4,2,4
+314,58,Male,Low,Daily,RC Cola,Very Dissatisfied,Other,Availability,Home,Pepsi,With Colleagues,9,4,2,3,5,5,5,5
+936,58,Male,Low,Monthly,RC Cola,Neutral,Vending Machine,Taste,Travel,Diet Coke,Alone,9,5,2,5,1,1,1,2
+162,51,Male,Low,Daily,Coke,Neutral,Vending Machine,Other,Restaurants,Coke,With Friends,9,5,4,2,2,2,3,5
+691,47,Female,Low,Weekly,Coke,Dissatisfied,Vending Machine,Availability,Home,RC Cola,Alone,9,3,5,1,1,5,2,5
+527,50,Male,Low,Daily,Diet Coke,Satisfied,Convenience Store,Brand Loyalty,Parties,Coke,With Family,9,5,1,4,5,3,3,3
 114,23,Female,Low,Rarely,Diet Coke,Very Satisfied,Supermarket,Availability,Travel,Pepsi Light,With Friends,4,3,1,3,5,1,1,4
 232,53,Female,Low,Daily,Diet Coke,Satisfied,Convenience Store,Taste,Sports Events,Pepsi,With Family,4,1,2,4,2,5,1,1
 173,61,Female,Low,Daily,Pepsi,Dissatisfied,Online,Brand Loyalty,Other,RC Cola,Other,4,1,4,2,4,3,5,1
@@ -236,32 +236,32 @@ Respondent_ID,Age,Gender,Income_Level,Frequency_of_Consumption,Brand_Preference,
 333,35,Female,Low,Never,Pepsi Light,Dissatisfied,Other,Price,Restaurants,Pepsi Light,Alone,4,3,1,1,2,2,5,4
 452,36,Female,Low,Rarely,Pepsi Light,Very Dissatisfied,Other,Taste,Work,Pepsi,Alone,4,1,5,3,1,3,3,1
 385,25,Female,Low,Monthly,Pepsi,Very Satisfied,Online,Taste,Sports Events,Pepsi Light,With Colleagues,4,1,4,3,2,1,3,1
-123,19,Female,Low,Never,RC Cola,Satisfied,Online,Price,Other,Pepsi Light,With Family,4,1,3,1,2,1,4,3
-208,60,Prefer Not to Say,Low,Monthly,RC Cola,Very Dissatisfied,Supermarket,Other,Other,RC Cola,With Friends,4,5,1,4,3,2,4,3
-493,20,Prefer Not to Say,Low,Monthly,RC Cola,Very Dissatisfied,Vending Machine,Brand Loyalty,Work,RC Cola,With Friends,4,5,3,5,3,5,4,1
-750,31,Prefer Not to Say,Low,Weekly,RC Cola,Very Satisfied,Vending Machine,Price,Sports Events,Diet Coke,Other,4,4,2,2,1,2,1,5
-721,18,Prefer Not to Say,Low,Never,Pepsi Light,Dissatisfied,Online,Taste,Travel,RC Cola,With Family,4,1,1,5,1,4,3,5
-645,54,Female,Middle,Daily,Pepsi Light,Neutral,Supermarket,Taste,Travel,RC Cola,Alone,4,5,5,4,5,5,1,3
-583,56,Male,Middle,Rarely,Coke,Very Dissatisfied,Other,Brand Loyalty,Restaurants,Diet Coke,Alone,4,2,4,1,3,4,4,3
-513,20,Male,Middle,Daily,Diet Coke,Neutral,Online,Price,Travel,Pepsi,Other,4,1,4,3,5,4,3,4
+123,19,Female,Low,Never,RC Cola,Satisfied,Online,Price,Other,Pepsi Light,With Family,10,1,3,1,2,1,4,3
+208,60,Prefer Not to Say,Low,Monthly,RC Cola,Very Dissatisfied,Supermarket,Other,Other,RC Cola,With Friends,9,5,1,4,3,2,4,3
+493,20,Prefer Not to Say,Low,Monthly,RC Cola,Very Dissatisfied,Vending Machine,Brand Loyalty,Work,RC Cola,With Friends,10,5,3,5,3,5,4,1
+750,31,Prefer Not to Say,Low,Weekly,RC Cola,Very Satisfied,Vending Machine,Price,Sports Events,Diet Coke,Other,9,4,2,2,1,2,1,5
+721,18,Prefer Not to Say,Low,Never,Pepsi Light,Dissatisfied,Online,Taste,Travel,RC Cola,With Family,9,1,1,5,1,4,3,5
+645,54,Female,Middle,Daily,Pepsi Light,Neutral,Supermarket,Taste,Travel,RC Cola,Alone,9,5,5,4,5,5,1,3
+583,56,Male,Middle,Rarely,Coke,Very Dissatisfied,Other,Brand Loyalty,Restaurants,Diet Coke,Alone,9,2,4,1,3,4,4,3
+513,20,Male,Middle,Daily,Diet Coke,Neutral,Online,Price,Travel,Pepsi,Other,10,1,4,3,5,4,3,4
 228,35,Male,Middle,Monthly,Pepsi,Neutral,Online,Availability,Home,Pepsi Light,With Family,4,5,2,4,1,1,1,5
 893,51,Male,Middle,Daily,Pepsi,Very Dissatisfied,Other,Availability,Parties,Pepsi,With Family,4,4,1,2,2,1,1,2
-491,56,Male,Middle,Never,Pepsi,Very Satisfied,Other,Brand Loyalty,Sports Events,RC Cola,With Colleagues,4,5,2,4,3,3,1,4
-248,43,Male,Middle,Daily,Pepsi,Very Satisfied,Other,Taste,Home,Diet Coke,With Friends,4,2,2,5,3,4,1,1
-400,36,Male,Middle,Weekly,Pepsi,Dissatisfied,Online,Brand Loyalty,Work,Diet Coke,With Friends,4,3,5,1,2,1,5,1
-134,52,Female,Middle,Never,Coke,Dissatisfied,Vending Machine,Other,Home,Pepsi Light,With Family,4,3,1,3,3,3,5,1
-203,25,Male,Middle,Monthly,Diet Coke,Neutral,Supermarket,Brand Loyalty,Parties,Diet Coke,Other,7,5,5,3,1,4,1,2
-560,60,Male,Middle,Never,Diet Coke,Neutral,Convenience Store,Taste,Travel,Diet Coke,With Family,7,2,2,4,2,3,5,3
-666,46,Male,Middle,Rarely,RC Cola,Very Dissatisfied,Vending Machine,Brand Loyalty,Parties,Coke,With Friends,7,2,3,4,1,5,2,4
-16,29,Male,Middle,Monthly,RC Cola,Dissatisfied,Other,Taste,Restaurants,Pepsi,With Friends,7,3,5,2,1,4,4,1
+491,56,Male,Middle,Never,Pepsi,Very Satisfied,Other,Brand Loyalty,Sports Events,RC Cola,With Colleagues,10,5,2,4,3,3,1,4
+248,43,Male,Middle,Daily,Pepsi,Very Satisfied,Other,Taste,Home,Diet Coke,With Friends,9,2,2,5,3,4,1,1
+400,36,Male,Middle,Weekly,Pepsi,Dissatisfied,Online,Brand Loyalty,Work,Diet Coke,With Friends,10,3,5,1,2,1,5,1
+134,52,Female,Middle,Never,Coke,Dissatisfied,Vending Machine,Other,Home,Pepsi Light,With Family,9,3,1,3,3,3,5,1
+203,25,Male,Middle,Monthly,Diet Coke,Neutral,Supermarket,Brand Loyalty,Parties,Diet Coke,Other,9,5,5,3,1,4,1,2
+560,60,Male,Middle,Never,Diet Coke,Neutral,Convenience Store,Taste,Travel,Diet Coke,With Family,9,2,2,4,2,3,5,3
+666,46,Male,Middle,Rarely,RC Cola,Very Dissatisfied,Vending Machine,Brand Loyalty,Parties,Coke,With Friends,9,2,3,4,1,5,2,4
+16,29,Male,Middle,Monthly,RC Cola,Dissatisfied,Other,Taste,Restaurants,Pepsi,With Friends,10,3,5,2,1,4,4,1
 811,51,Non-Binary,Middle,Weekly,RC Cola,Dissatisfied,Online,Price,Restaurants,Diet Coke,With Friends,7,4,3,1,1,1,2,2
-229,40,Male,Middle,Weekly,Coke,Satisfied,Convenience Store,Price,Home,RC Cola,With Colleagues,7,4,1,1,4,4,1,1
-205,42,Female,Middle,Monthly,RC Cola,Neutral,Other,Price,Parties,Coke,Alone,4,3,5,2,5,2,1,1
-254,54,Prefer Not to Say,Middle,Never,Pepsi Light,Very Satisfied,Supermarket,Other,Restaurants,Pepsi Light,Other,4,1,4,1,4,4,3,2
-302,54,Prefer Not to Say,Middle,Monthly,Pepsi Light,Very Dissatisfied,Other,Taste,Sports Events,Pepsi Light,Alone,4,1,4,3,5,5,1,5
-213,18,Prefer Not to Say,Middle,Rarely,Pepsi Light,Neutral,Vending Machine,Taste,Other,Diet Coke,With Family,4,2,3,5,1,4,5,5
-447,36,Female,Low,Never,Coke,Dissatisfied,Supermarket,Price,Parties,Coke,With Friends,5,2,1,1,4,2,1,1
-126,37,Female,Low,Never,Diet Coke,Satisfied,Vending Machine,Availability,Home,Coke,With Family,5,2,3,5,4,2,5,4
+229,40,Male,Middle,Weekly,Coke,Satisfied,Convenience Store,Price,Home,RC Cola,With Colleagues,9,4,1,1,4,4,1,1
+205,42,Female,Middle,Monthly,RC Cola,Neutral,Other,Price,Parties,Coke,Alone,9,3,5,2,5,2,1,1
+254,54,Prefer Not to Say,Middle,Never,Pepsi Light,Very Satisfied,Supermarket,Other,Restaurants,Pepsi Light,Other,9,1,4,1,4,4,3,2
+302,54,Prefer Not to Say,Middle,Monthly,Pepsi Light,Very Dissatisfied,Other,Taste,Sports Events,Pepsi Light,Alone,9,1,4,3,5,5,1,5
+213,18,Prefer Not to Say,Middle,Rarely,Pepsi Light,Neutral,Vending Machine,Taste,Other,Diet Coke,With Family,9,2,3,5,1,4,5,5
+447,36,Female,Low,Never,Coke,Dissatisfied,Supermarket,Price,Parties,Coke,With Friends,9,2,1,1,4,2,1,1
+126,37,Female,Low,Never,Diet Coke,Satisfied,Vending Machine,Availability,Home,Coke,With Family,9,2,3,5,4,2,5,4
 238,53,Female,Medium,Weekly,RC Cola,Very Dissatisfied,Supermarket,Brand Loyalty,Work,Pepsi,With Family,5,4,4,4,1,5,2,4
 259,39,Female,Medium,Weekly,Pepsi Light,Very Dissatisfied,Other,Availability,Parties,Pepsi,With Friends,5,3,3,2,2,1,5,4
 247,63,Male,Medium,Weekly,Coke,Dissatisfied,Convenience Store,Availability,Sports Events,Pepsi Light,Other,5,1,3,3,1,1,1,3
@@ -288,14 +288,14 @@ Respondent_ID,Age,Gender,Income_Level,Frequency_of_Consumption,Brand_Preference,
 386,33,Female,High,Never,Pepsi,Very Dissatisfied,Online,Taste,Work,Diet Coke,With Family,6,5,2,4,5,2,2,1
 801,50,Female,High,Weekly,Pepsi,Dissatisfied,Supermarket,Price,Restaurants,Diet Coke,With Family,5,2,4,3,1,5,2,2
 31,36,Prefer Not to Say,High,Daily,Pepsi Light,Satisfied,Online,Price,Other,Pepsi Light,With Colleagues,5,3,1,5,3,5,4,1
-748,36,Prefer Not to Say,High,Monthly,Pepsi Light,Very Dissatisfied,Online,Other,Parties,RC Cola,With Family,5,3,1,3,1,1,5,2
-408,63,Prefer Not to Say,High,Monthly,Pepsi Light,Dissatisfied,Online,Brand Loyalty,Work,Diet Coke,With Family,5,5,3,3,5,4,5,3
-154,61,Female,Low,Weekly,Coke,Very Satisfied,Online,Taste,Sports Events,Coke,Alone,5,3,3,1,4,4,5,3
-546,34,Female,Low,Never,Coke,Dissatisfied,Vending Machine,Brand Loyalty,Restaurants,Coke,With Friends,5,4,2,2,1,5,4,2
-542,23,Female,Low,Never,Diet Coke,Very Satisfied,Convenience Store,Other,Travel,RC Cola,Other,5,3,1,5,3,1,4,1
-913,49,Female,Low,Never,Diet Coke,Satisfied,Other,Availability,Sports Events,RC Cola,Other,5,1,3,4,5,2,2,1
-34,49,Female,Low,Weekly,Pepsi,Very Satisfied,Convenience Store,Brand Loyalty,Restaurants,Diet Coke,With Friends,5,3,4,5,1,1,2,4
-410,29,Female,Low,Monthly,RC Cola,Very Dissatisfied,Online,Taste,Sports Events,Pepsi Light,Alone,5,2,1,2,1,3,2,3
+748,36,Prefer Not to Say,High,Monthly,Pepsi Light,Very Dissatisfied,Online,Other,Parties,RC Cola,With Family,10,3,1,3,1,1,5,2
+408,63,Prefer Not to Say,High,Monthly,Pepsi Light,Dissatisfied,Online,Brand Loyalty,Work,Diet Coke,With Family,9,5,3,3,5,4,5,3
+154,61,Female,Low,Weekly,Coke,Very Satisfied,Online,Taste,Sports Events,Coke,Alone,10,3,3,1,4,4,5,3
+546,34,Female,Low,Never,Coke,Dissatisfied,Vending Machine,Brand Loyalty,Restaurants,Coke,With Friends,9,4,2,2,1,5,4,2
+542,23,Female,Low,Never,Diet Coke,Very Satisfied,Convenience Store,Other,Travel,RC Cola,Other,9,3,1,5,3,1,4,1
+913,49,Female,Low,Never,Diet Coke,Satisfied,Other,Availability,Sports Events,RC Cola,Other,9,1,3,4,5,2,2,1
+34,49,Female,Low,Weekly,Pepsi,Very Satisfied,Convenience Store,Brand Loyalty,Restaurants,Diet Coke,With Friends,9,3,4,5,1,1,2,4
+410,29,Female,Low,Monthly,RC Cola,Very Dissatisfied,Online,Taste,Sports Events,Pepsi Light,Alone,10,2,1,2,1,3,2,3
 722,19,Female,Low,Never,RC Cola,Satisfied,Other,Availability,Work,Pepsi,With Family,5,3,1,4,4,5,2,2
 855,20,Female,Low,Never,RC Cola,Very Dissatisfied,Vending Machine,Availability,Other,RC Cola,With Friends,5,1,1,1,5,4,1,5
 506,31,Male,Low,Daily,Coke,Satisfied,Supermarket,Other,Sports Events,RC Cola,Other,5,2,5,2,4,4,4,5
@@ -305,14 +305,14 @@ Respondent_ID,Age,Gender,Income_Level,Frequency_of_Consumption,Brand_Preference,
 550,35,Male,Low,Monthly,Pepsi Light,Very Satisfied,Online,Price,Work,Pepsi Light,With Friends,5,5,1,4,3,2,4,2
 960,46,Male,Low,Never,Pepsi Light,Satisfied,Online,Price,Work,Pepsi Light,With Family,5,4,5,4,4,3,3,5
 47,58,Male,Low,Monthly,Pepsi Light,Very Dissatisfied,Other,Price,Work,Pepsi,Other,5,2,2,3,4,2,1,2
-388,54,Male,Low,Weekly,Pepsi Light,Very Dissatisfied,Vending Machine,Price,Travel,Pepsi,Other,5,5,5,3,1,2,1,4
-115,39,Male,Low,Daily,Pepsi Light,Dissatisfied,Other,Availability,Travel,RC Cola,Alone,5,4,5,1,3,1,5,4
-359,26,Male,Low,Daily,Pepsi Light,Dissatisfied,Other,Availability,Parties,Diet Coke,With Colleagues,5,5,2,2,2,4,5,2
-903,54,Female,Low,Rarely,Coke,Very Satisfied,Online,Brand Loyalty,Home,Pepsi Light,With Colleagues,5,4,2,4,3,1,2,1
-182,58,Female,Low,Never,Coke,Dissatisfied,Supermarket,Price,Work,Diet Coke,With Friends,5,3,3,4,4,1,4,5
-201,56,Female,Low,Daily,Coke,Satisfied,Convenience Store,Price,Other,Diet Coke,With Friends,5,4,3,5,5,3,5,5
-421,47,Female,Low,Rarely,Coke,Very Satisfied,Supermarket,Other,Travel,Diet Coke,Other,5,4,5,5,4,4,4,5
-273,25,Male,Low,Weekly,Diet Coke,Very Dissatisfied,Online,Brand Loyalty,Travel,Diet Coke,With Friends,5,3,3,3,2,4,4,1
+388,54,Male,Low,Weekly,Pepsi Light,Very Dissatisfied,Vending Machine,Price,Travel,Pepsi,Other,10,5,5,3,1,2,1,4
+115,39,Male,Low,Daily,Pepsi Light,Dissatisfied,Other,Availability,Travel,RC Cola,Alone,9,4,5,1,3,1,5,4
+359,26,Male,Low,Daily,Pepsi Light,Dissatisfied,Other,Availability,Parties,Diet Coke,With Colleagues,10,5,2,2,2,4,5,2
+903,54,Female,Low,Rarely,Coke,Very Satisfied,Online,Brand Loyalty,Home,Pepsi Light,With Colleagues,9,4,2,4,3,1,2,1
+182,58,Female,Low,Never,Coke,Dissatisfied,Supermarket,Price,Work,Diet Coke,With Friends,9,3,3,4,4,1,4,5
+201,56,Female,Low,Daily,Coke,Satisfied,Convenience Store,Price,Other,Diet Coke,With Friends,9,4,3,5,5,3,5,5
+421,47,Female,Low,Rarely,Coke,Very Satisfied,Supermarket,Other,Travel,Diet Coke,Other,9,4,5,5,4,4,4,5
+273,25,Male,Low,Weekly,Diet Coke,Very Dissatisfied,Online,Brand Loyalty,Travel,Diet Coke,With Friends,10,3,3,3,2,4,4,1
 606,44,Non-Binary,Low,Daily,RC Cola,Neutral,Supermarket,Other,Other,RC Cola,Alone,5,5,5,3,5,3,5,1
 105,59,Non-Binary,Low,Monthly,Pepsi Light,Neutral,Vending Machine,Other,Restaurants,Coke,With Colleagues,5,2,5,1,3,1,3,1
 618,30,Male,Low,Weekly,Pepsi Light,Dissatisfied,Vending Machine,Brand Loyalty,Work,Pepsi,With Family,5,1,1,5,4,3,5,4
@@ -360,14 +360,14 @@ Respondent_ID,Age,Gender,Income_Level,Frequency_of_Consumption,Brand_Preference,
 325,62,Male,Middle,Weekly,Coke,Dissatisfied,Convenience Store,Price,Restaurants,Pepsi,With Colleagues,5,2,3,5,5,1,5,3
 341,55,Male,Middle,Rarely,Diet Coke,Very Satisfied,Convenience Store,Taste,Parties,Pepsi,Other,5,2,4,4,5,4,2,1
 972,26,Female,Middle,Never,Pepsi,Very Dissatisfied,Supermarket,Availability,Restaurants,Coke,Alone,7,3,2,1,2,5,1,5
-620,35,Male,Middle,Monthly,Pepsi,Dissatisfied,Convenience Store,Availability,Work,RC Cola,Other,7,3,1,4,5,1,1,3
-732,29,Prefer Not to Say,Middle,Weekly,RC Cola,Very Satisfied,Supermarket,Other,Sports Events,Pepsi,With Colleagues,7,1,1,4,5,5,5,5
-125,30,Prefer Not to Say,Middle,Daily,Pepsi Light,Satisfied,Online,Brand Loyalty,Restaurants,Coke,Alone,7,3,1,3,3,1,2,3
-346,36,Prefer Not to Say,Middle,Daily,Pepsi Light,Satisfied,Convenience Store,Price,Restaurants,Pepsi,Other,7,3,2,5,1,3,1,3
-96,52,Female,Low,Weekly,Coke,Dissatisfied,Online,Price,Restaurants,Pepsi Light,Other,7,3,3,2,4,2,5,4
-530,45,Female,Low,Monthly,Coke,Very Dissatisfied,Vending Machine,Brand Loyalty,Work,Pepsi Light,Alone,7,4,2,5,3,3,3,2
-106,44,Female,Low,Daily,Diet Coke,Neutral,Vending Machine,Taste,Sports Events,Coke,With Friends,7,4,2,5,3,5,5,3
-522,30,Female,Low,Weekly,Diet Coke,Very Dissatisfied,Convenience Store,Other,Sports Events,RC Cola,With Friends,7,3,5,5,1,1,3,5
+620,35,Male,Middle,Monthly,Pepsi,Dissatisfied,Convenience Store,Availability,Work,RC Cola,Other,10,3,1,4,5,1,1,3
+732,29,Prefer Not to Say,Middle,Weekly,RC Cola,Very Satisfied,Supermarket,Other,Sports Events,Pepsi,With Colleagues,9,1,1,4,5,5,5,5
+125,30,Prefer Not to Say,Middle,Daily,Pepsi Light,Satisfied,Online,Brand Loyalty,Restaurants,Coke,Alone,10,3,1,3,3,1,2,3
+346,36,Prefer Not to Say,Middle,Daily,Pepsi Light,Satisfied,Convenience Store,Price,Restaurants,Pepsi,Other,9,3,2,5,1,3,1,3
+96,52,Female,Low,Weekly,Coke,Dissatisfied,Online,Price,Restaurants,Pepsi Light,Other,9,3,3,2,4,2,5,4
+530,45,Female,Low,Monthly,Coke,Very Dissatisfied,Vending Machine,Brand Loyalty,Work,Pepsi Light,Alone,9,4,2,5,3,3,3,2
+106,44,Female,Low,Daily,Diet Coke,Neutral,Vending Machine,Taste,Sports Events,Coke,With Friends,9,4,2,5,3,5,5,3
+522,30,Female,Low,Weekly,Diet Coke,Very Dissatisfied,Convenience Store,Other,Sports Events,RC Cola,With Friends,10,3,5,5,1,1,3,5
 318,42,Female,Medium,Never,Pepsi,Neutral,Vending Machine,Other,Restaurants,RC Cola,With Friends,7,1,5,5,1,5,4,2
 658,31,Female,Medium,Rarely,RC Cola,Neutral,Other,Brand Loyalty,Travel,Coke,Alone,7,2,2,1,5,5,5,5
 449,56,Female,Medium,Rarely,RC Cola,Very Satisfied,Supermarket,Availability,Restaurants,Pepsi Light,With Family,7,3,1,4,5,2,5,1
@@ -376,14 +376,14 @@ Respondent_ID,Age,Gender,Income_Level,Frequency_of_Consumption,Brand_Preference,
 642,52,Female,Medium,Daily,Pepsi Light,Satisfied,Other,Availability,Other,Pepsi,Alone,6,2,3,4,5,2,5,5
 968,21,Female,Medium,Daily,Pepsi Light,Very Satisfied,Convenience Store,Availability,Parties,Pepsi,Other,6,1,4,5,5,3,2,2
 638,57,Male,Medium,Weekly,Coke,Satisfied,Supermarket,Other,Restaurants,Coke,With Family,6,4,3,5,2,5,2,2
-940,26,Male,Medium,Rarely,Coke,Very Dissatisfied,Online,Price,Travel,Coke,Alone,6,1,3,4,1,1,2,3
-959,35,Male,Medium,Rarely,Coke,Very Satisfied,Online,Brand Loyalty,Home,Pepsi,With Friends,6,4,1,1,4,2,2,5
-50,55,Male,Medium,Monthly,Coke,Neutral,Other,Availability,Restaurants,RC Cola,With Friends,6,4,5,4,4,1,3,4
-485,44,Male,Medium,Monthly,Coke,Dissatisfied,Other,Availability,Work,RC Cola,Other,6,5,1,4,1,4,2,4
-904,44,Male,High,Monthly,Diet Coke,Neutral,Other,Taste,Home,Coke,With Colleagues,6,1,5,1,1,3,1,3
-57,45,Male,High,Weekly,Pepsi,Satisfied,Supermarket,Availability,Other,Pepsi Light,Alone,6,5,2,1,1,2,5,2
-56,34,Male,High,Monthly,Pepsi,Very Satisfied,Convenience Store,Taste,Parties,Pepsi,With Family,6,5,4,1,2,5,1,1
-326,18,Male,High,Weekly,Pepsi,Dissatisfied,Convenience Store,Taste,Other,RC Cola,Other,6,4,2,1,3,2,5,4
+940,26,Male,Medium,Rarely,Coke,Very Dissatisfied,Online,Price,Travel,Coke,Alone,10,1,3,4,1,1,2,3
+959,35,Male,Medium,Rarely,Coke,Very Satisfied,Online,Brand Loyalty,Home,Pepsi,With Friends,9,4,1,1,4,2,2,5
+50,55,Male,Medium,Monthly,Coke,Neutral,Other,Availability,Restaurants,RC Cola,With Friends,10,4,5,4,4,1,3,4
+485,44,Male,Medium,Monthly,Coke,Dissatisfied,Other,Availability,Work,RC Cola,Other,9,5,1,4,1,4,2,4
+904,44,Male,High,Monthly,Diet Coke,Neutral,Other,Taste,Home,Coke,With Colleagues,9,1,5,1,1,3,1,3
+57,45,Male,High,Weekly,Pepsi,Satisfied,Supermarket,Availability,Other,Pepsi Light,Alone,9,5,2,1,1,2,5,2
+56,34,Male,High,Monthly,Pepsi,Very Satisfied,Convenience Store,Taste,Parties,Pepsi,With Family,9,5,4,1,2,5,1,1
+326,18,Male,High,Weekly,Pepsi,Dissatisfied,Convenience Store,Taste,Other,RC Cola,Other,10,4,2,1,3,2,5,4
 770,40,Male,High,Weekly,Pepsi,Very Dissatisfied,Supermarket,Availability,Home,Diet Coke,With Colleagues,6,2,2,2,1,5,5,1
 882,41,Male,High,Monthly,Pepsi Light,Neutral,Supermarket,Brand Loyalty,Travel,Diet Coke,Alone,6,1,2,4,1,2,5,4
 503,48,Female,High,Rarely,Coke,Satisfied,Vending Machine,Other,Work,Pepsi Light,With Friends,6,4,4,1,1,2,1,1
