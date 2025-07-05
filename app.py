@@ -251,10 +251,10 @@ st.sidebar.markdown("---")
 st.sidebar.markdown("## 🧭 Navigation Tips")
 st.sidebar.info("""
 💡 **Pro Tips:**
-- Use filters to focus on specific segments
+- Using filters will dynamically change the summaries
 - Switch chart types for different perspectives  
 - Check the Executive Summary for key insights
-- Use 'View & Download Full Dataset' section for exports
+- Download Advanced Analytics doc to know about the stats used
 """)
 
 # App title with enhanced styling
