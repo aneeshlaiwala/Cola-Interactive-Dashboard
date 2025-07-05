@@ -195,7 +195,7 @@ def load_data():
                             labels=['18-24', '25-34', '35-44', '45-54', '55+'], 
                             right=False)
     
-    # Calculate NPS categories
+    # Calculate NPS categories - CORRECTED
     df['NPS_Category'] = pd.cut(df['NPS_Score'], 
                                bins=[-1, 6, 8, 10], 
                                labels=['Detractors', 'Passives', 'Promoters'])
@@ -432,6 +432,28 @@ else:
         <br><strong>📊 Status:</strong> No filters applied - showing all consumer data
     </div>
     """, unsafe_allow_html=True)
+
+# Function to calculate NPS - CORRECTED
+def calculate_nps(data):
+    """Calculate NPS using correct formula: % Promoters - % Detractors"""
+    if len(data) == 0:
+        return 0, 0, 0, 0  # nps, promoters_count, passives_count, detractors_count
+    
+    # Count each category based on correct ranges
+    promoters_count = len(data[data['NPS_Score'].between(9, 10)])  # 9-10
+    passives_count = len(data[data['NPS_Score'].between(7, 8)])    # 7-8  
+    detractors_count = len(data[data['NPS_Score'].between(0, 6)])  # 0-6
+    
+    total = len(data)
+    
+    # Calculate percentages
+    promoters_pct = (promoters_count / total * 100) if total > 0 else 0
+    detractors_pct = (detractors_count / total * 100) if total > 0 else 0
+    
+    # NPS = % Promoters - % Detractors
+    nps_score = promoters_pct - detractors_pct
+    
+    return int(nps_score), promoters_count, passives_count, detractors_count
     
 # =======================
 # EXECUTIVE DASHBOARD SUMMARY - ENHANCED
@@ -443,16 +465,9 @@ if section == "Executive Dashboard Summary":
     col1, col2, col3 = st.columns(3)
     
     with col1:
-        # Calculate NPS - Correct formula: % Promoters - % Detractors
+        # Calculate NPS using corrected function
         if not filtered_df.empty:
-            promoters = filtered_df[filtered_df['NPS_Score'] >= 9].shape[0]
-            detractors = filtered_df[filtered_df['NPS_Score'] <= 6].shape[0]
-            total = filtered_df['NPS_Score'].count()
-            
-            # Calculate percentages first, then subtract
-            promoters_pct = (promoters / total) if total > 0 else 0
-            detractors_pct = (detractors / total) if total > 0 else 0
-            nps_score = int((promoters_pct - detractors_pct) * 100)
+            nps_score, promoters, passives, detractors = calculate_nps(filtered_df)
             
             # Enhanced NPS display with color coding
             nps_color = "🟢" if nps_score > 50 else "🟡" if nps_score > 0 else "🔴"
@@ -463,7 +478,7 @@ if section == "Executive Dashboard Summary":
                 <h3>{nps_color} Overall NPS Score</h3>
                 <h1 style='font-size: 3rem; margin: 0.5rem 0;'>{nps_score}</h1>
                 <p>{nps_status}</p>
-                <small>{promoters} Promoters • {detractors} Detractors</small>
+                <small>{promoters} Promoters • {passives} Passives • {detractors} Detractors</small>
             </div>
             """, unsafe_allow_html=True)
         else:
@@ -1064,16 +1079,9 @@ elif section == "Basic Attribute Scores":
             st.info("No data available for Attribute Ratings with current filters.")
     
     with col2:
-        # Calculate NPS score
+        # Calculate NPS score using corrected function
         if not filtered_df.empty:
-            promoters = filtered_df[filtered_df['NPS_Score'] >= 9].shape[0]
-            detractors = filtered_df[filtered_df['NPS_Score'] <= 6].shape[0]
-            total = filtered_df['NPS_Score'].count()
-            
-            # Get percentages before calculating NPS
-            promoters_pct = (promoters / total) if total > 0 else 0
-            detractors_pct = (detractors / total) if total > 0 else 0 
-            nps_score = int((promoters_pct - detractors_pct) * 100)
+            nps_score, promoters, passives, detractors = calculate_nps(filtered_df)
             
             # Display NPS gauge chart
             fig = go.Figure(go.Indicator(
@@ -1108,18 +1116,11 @@ elif section == "Basic Attribute Scores":
             if len(filtered_df['Gender'].unique()) <= 1:
                 st.info("Insufficient unique gender data for comparison.")
             else:
-                # Calculate NPS by gender
+                # Calculate NPS by gender using corrected function
                 gender_results = []
                 for gender in filtered_df['Gender'].unique():
                     gender_df = filtered_df[filtered_df['Gender'] == gender]
-                    promoters = gender_df[gender_df['NPS_Score'] >= 9].shape[0]
-                    detractors = gender_df[gender_df['NPS_Score'] <= 6].shape[0]
-                    total = gender_df.shape[0]
-                    
-                    # Calculate NPS
-                    promoters_pct = promoters / total if total > 0 else 0
-                    detractors_pct = detractors / total if total > 0 else 0
-                    nps = (promoters_pct - detractors_pct) * 100
+                    nps, promoters, passives, detractors = calculate_nps(gender_df)
                     
                     gender_results.append({
                         'Gender': gender,
@@ -1151,18 +1152,11 @@ elif section == "Basic Attribute Scores":
             if len(filtered_df['Age_Group'].unique()) <= 1:
                 st.info("Insufficient unique age group data for comparison.")
             else:
-                # Calculate NPS by age group
+                # Calculate NPS by age group using corrected function
                 age_results = []
                 for age_group in sorted(filtered_df['Age_Group'].unique()):
                     age_df = filtered_df[filtered_df['Age_Group'] == age_group]
-                    promoters = age_df[age_df['NPS_Score'] >= 9].shape[0]
-                    detractors = age_df[age_df['NPS_Score'] <= 6].shape[0]
-                    total = age_df.shape[0]
-                    
-                    # Calculate NPS
-                    promoters_pct = promoters / total if total > 0 else 0
-                    detractors_pct = detractors / total if total > 0 else 0
-                    nps = (promoters_pct - detractors_pct) * 100
+                    nps, promoters, passives, detractors = calculate_nps(age_df)
                     
                     age_results.append({
                         'Age_Group': age_group,
@@ -1364,13 +1358,19 @@ elif section == "Decision Tree Analysis":
     if len(filtered_df) < 30:
         st.warning("Insufficient data for decision tree analysis. Please adjust your filters.")
     else:
-        # Define NPS categories for classification
+        # Define NPS categories for classification - CORRECTED
         filtered_df_copy = filtered_df.copy()
-        filtered_df_copy['NPS_Category'] = pd.cut(
-            filtered_df_copy['NPS_Score'],
-            bins=[-1, 6, 8, 10],
-            labels=['Detractor', 'Passive', 'Promoter']
-        )
+        
+        # Create NPS categories using correct ranges
+        def categorize_nps(score):
+            if score >= 9:
+                return 'Promoter'
+            elif score >= 7:
+                return 'Passive'
+            else:
+                return 'Detractor'
+        
+        filtered_df_copy['NPS_Category'] = filtered_df_copy['NPS_Score'].apply(categorize_nps)
         
         # Prepare data for decision tree
         X_tree = filtered_df_copy[['Taste_Rating', 'Price_Rating', 'Packaging_Rating', 
@@ -1489,9 +1489,6 @@ elif section == "Decision Tree Analysis":
 # =======================
 # CLUSTER ANALYSIS
 # =======================
-# =======================
-# CLUSTER ANALYSIS - CLEAN VERSION
-# =======================
 elif section == "Cluster Analysis":
     st.markdown("<h2 class='subheader'>Cluster Analysis</h2>", unsafe_allow_html=True)
     
@@ -1565,7 +1562,58 @@ elif section == "Cluster Analysis":
                     st.plotly_chart(fig)
             else:
                 st.info("Insufficient data for factor analysis. Minimum of 50 records required.")
+        
+        with col2:
+            # Cluster centers radar chart
+            st.subheader("Cluster Centers (Average Ratings)")
             
+            # Generate radar chart for cluster centers
+            categories = ['Taste', 'Price', 'Packaging', 'Brand_Reputation', 'Availability', 'Sweetness', 'Fizziness']
+            
+            # Get cluster centers and reshape for radar chart
+            centers_data = []
+            cluster_names = filtered_df['Cluster_Name'].unique()
+            
+            for i, name in enumerate(cluster_names):
+                cluster_id = filtered_df[filtered_df['Cluster_Name'] == name]['Cluster'].iloc[0]
+                values = cluster_centers.iloc[cluster_id].values.tolist()
+                centers_data.append({
+                    'Cluster': name,
+                    **{cat: val for cat, val in zip(categories, values)}
+                })
+            
+            # Create radar chart
+            df_radar = pd.DataFrame(centers_data)
+            fig = go.Figure()
+            
+            for i, row in df_radar.iterrows():
+                fig.add_trace(go.Scatterpolar(
+                    r=row[categories].values,
+                    theta=categories,
+                    fill='toself',
+                    name=row['Cluster']
+                ))
+            
+            fig.update_layout(
+                polar=dict(
+                    radialaxis=dict(
+                        visible=True,
+                        range=[0, 5]
+                    )
+                ),
+                title="Cluster Profiles - Average Ratings"
+            )
+            st.plotly_chart(fig)
+            
+            # Add interpretation guide BELOW the radar chart
+            st.markdown("""
+            **📊 How to Read This Chart:**
+            - **Larger areas** = Higher ratings for those attributes
+            - **Compare shapes** to see how clusters differ
+            - **Distance from center** = Rating strength (1-5 scale)
+            - **Overlapping areas** = Similar performance between clusters
+            """)
+        
         # Cluster profiles analysis section - FULL WIDTH BELOW both columns
         st.subheader("Cluster Profiles Analysis")
         
@@ -1619,7 +1667,7 @@ elif section == "Cluster Analysis":
                     top_age = cluster_data['Age_Group'].value_counts().idxmax()
                     age_pct = cluster_data['Age_Group'].value_counts(normalize=True).max() * 100
                     
-                    # Average NPS
+                    # Average NPS using corrected function
                     avg_nps = cluster_data['NPS_Score'].mean()
                     
                     # Top and weakest attributes
@@ -1634,57 +1682,7 @@ elif section == "Cluster Analysis":
                     st.write(f"⚠️ Weakest attribute: **{lowest_attribute.replace('_Rating', '')}**")
                 else:
                     st.write("No data available for this cluster with current filters.")
-        
-        with col2:
-            # Cluster centers radar chart
-            st.subheader("Cluster Centers (Average Ratings)")
-            
-            # Generate radar chart for cluster centers
-            categories = ['Taste', 'Price', 'Packaging', 'Brand_Reputation', 'Availability', 'Sweetness', 'Fizziness']
-            
-            # Get cluster centers and reshape for radar chart
-            centers_data = []
-            cluster_names = filtered_df['Cluster_Name'].unique()
-            
-            for i, name in enumerate(cluster_names):
-                cluster_id = filtered_df[filtered_df['Cluster_Name'] == name]['Cluster'].iloc[0]
-                values = cluster_centers.iloc[cluster_id].values.tolist()
-                centers_data.append({
-                    'Cluster': name,
-                    **{cat: val for cat, val in zip(categories, values)}
-                })
-            
-            # Create radar chart
-            df_radar = pd.DataFrame(centers_data)
-            fig = go.Figure()
-            
-            for i, row in df_radar.iterrows():
-                fig.add_trace(go.Scatterpolar(
-                    r=row[categories].values,
-                    theta=categories,
-                    fill='toself',
-                    name=row['Cluster']
-                ))
-            
-            fig.update_layout(
-                polar=dict(
-                    radialaxis=dict(
-                        visible=True,
-                        range=[0, 5]
-                    )
-                ),
-                title="Cluster Profiles - Average Ratings"
-            )
-            st.plotly_chart(fig)
-            
-            # Add interpretation guide BELOW the radar chart
-            st.markdown("""
-            **📊 How to Read This Chart:**
-            - **Larger areas** = Higher ratings for those attributes
-            - **Compare shapes** to see how clusters differ
-            - **Distance from center** = Rating strength (1-5 scale)
-            - **Overlapping areas** = Similar performance between clusters
-            """)
+
 # =======================
 # ADVANCED ANALYTICS EXPLAINED
 # =======================
